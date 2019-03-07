@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Finances Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select [(ngModel)]="type" (ionChange)="onChange(type)" placeholder="Select One" >
+        <ion-select-option value="card">Card/ID Expiration</ion-select-option>
+        <ion-select-option value="payment">Payment</ion-select-option>
+        <ion-select-option value="income">Income</ion-select-option>
+        <ion-select-option value="expense">Expense</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item [hidden]="hideName">
+        <ion-label>Name</ion-label>
+        <ion-input [(ngModel)]="itemName" placeholder="Input Name"></ion-input>
+    </ion-item>
+
+    <ion-item [hidden]="hideAmount">
+        <ion-label>Amount</ion-label>
+        <ion-input [(ngModel)]="cashAmount" placeholder="500"></ion-input>
+    </ion-item>
+
+    <ion-item [hidden]="hideDate">
+        <ion-label>Date</ion-label>
+        <ion-datetime [(ngModel)]="datePicked" display-format="MMM DD, YYYY" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" (click)="save()" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" (click)="dismiss()" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
