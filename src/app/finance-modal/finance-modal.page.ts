@@ -53,6 +53,11 @@ export class FinanceModalPage implements OnInit {
     this.modalController.dismiss();
   }
 
+  getMaxYear(){
+    let currentDate = new Date;
+    return (currentDate.getFullYear() + 20).toString();   
+  }
+
   async save(){
     if(this.type == undefined || (this.type == "card" && (this.itemName == undefined || this.datePicked == undefined)) || (this.type == "payment" && (this.itemName == undefined || this.cashAmount == undefined || this.datePicked == undefined)) || (this.type == "income" && (this.cashAmount == undefined)) || (this.type == "expense" && (this.cashAmount == undefined)) ){
       const alert = await this.alertController.create({

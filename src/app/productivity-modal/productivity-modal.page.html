@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-item>
+        <ion-input [(ngModel)]="taskString" placeholder="Input Task"></ion-input>
+    </ion-item>
+
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" (click)="save()" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" (click)="dismiss()" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>

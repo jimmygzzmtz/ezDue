@@ -28,7 +28,7 @@
 
     <ion-item [hidden]="hideDate">
         <ion-label>Date</ion-label>
-        <ion-datetime [(ngModel)]="datePicked" display-format="MMM DD, YYYY" placeholder="Select Date"></ion-datetime>
+        <ion-datetime [(ngModel)]="datePicked" display-format="MMM DD, YYYY" placeholder="Select Date" max="{{ this.getMaxYear() }}"></ion-datetime>
     </ion-item>
 
 </ion-content>

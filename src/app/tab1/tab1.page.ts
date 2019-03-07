@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage';
 
 export class Tab1Page {
   logs: any = [];
-  total: number = 0;
+  balance: number = 0;
 
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
     
@@ -24,35 +24,30 @@ export class Tab1Page {
        this.storage.set('logsArr', JSON.stringify(this.logs));
       }
     });
-    
-  }
 
-  totalBalance(){
-    this.total = 0;
-
-    if (this.logs != undefined){
-      for(let i = 0; i<this.logs.length; i++){
-        if(this.logs[i].type == "income"){
-          this.total = this.total + +this.logs[i].cashAmount;    
-        }
-        if(this.logs[i].type == "expense"){
-          this.total = this.total - +this.logs[i].cashAmount;    
-        }
+    this.storage.get('balanceVal').then((val) => {
+      if (val != ""){
+       this.balance = val
       }
-    }
+      else{
+       this.storage.set('balanceVal', this.balance);
+      }
+    });
     
-    return this.total;
-
   }
 
   getCards() {
-   var logs2 = this.logs.filter(checkCard, this);
-   logs2.sort((a: any, b: any) => {
-      var aDate = new Date(a.datePicked.valueOf());
-      var bDate = new Date(b.datePicked.valueOf());
-      return aDate.getTime() - bDate.getTime();
-    }); 
-    return logs2;
+   if (this.logs != undefined){
+
+    var logs2 = this.logs.filter(checkCard, this);
+    logs2.sort((a: any, b: any) => {
+       var aDate = new Date(a.datePicked.valueOf());
+       var bDate = new Date(b.datePicked.valueOf());
+       return aDate.getTime() - bDate.getTime();
+     }); 
+     return logs2;
+
+   } 
 
    function checkCard(log) {
     return (log.type == "card" || log.type == "payment");
@@ -84,19 +79,29 @@ export class Tab1Page {
     modal.onDidDismiss()
       .then((data) => {
         if (data.data != undefined){
-          if (this.logs == null){
-            this.logs = [];
-            this.logs.push({
-              type: data.data.type,
-              cashAmount: data.data.cashAmount,
-              datePicked: data.data.datePicked,
-              itemName: data.data.itemName
-            })
+          if (data.data.type == "expense"){
+            this.balance = this.balance - +data.data.cashAmount
+            this.storage.set('balanceVal', this.balance);
           }
-          else{
-            this.logs.push(data.data);
+          if (data.data.type == "income"){
+            this.balance = this.balance + +data.data.cashAmount
+            this.storage.set('balanceVal', this.balance);
           }
-          this.storage.set('logsArr', JSON.stringify(this.logs));
+          if (data.data.type != "income" && data.data.type != "expense"){
+            if (this.logs == null){
+              this.logs = [];
+              this.logs.push({
+                type: data.data.type,
+                cashAmount: data.data.cashAmount,
+                datePicked: data.data.datePicked,
+                itemName: data.data.itemName
+              })
+            }
+            else{
+              this.logs.push(data.data);
+            }
+            this.storage.set('logsArr', JSON.stringify(this.logs));
+          }
         }     
     });
 
