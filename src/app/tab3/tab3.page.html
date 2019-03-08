@@ -9,13 +9,18 @@
 <ion-content>
   
   <ion-item>
-      <ion-label>Recurring Payments in Finances</ion-label>
+      <ion-label>Input Recurring Payments</ion-label>
       <ion-toggle [(ngModel)]="recurringPayments" (ionChange)="switchRecur()"></ion-toggle>
   </ion-item>
 
   <ion-item>
       <ion-label>Subtract Payments from Balance when Done</ion-label>
       <ion-toggle [(ngModel)]="subPayBal" (ionChange)="switchSub()"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>Show Delete Button in Cards</ion-label>
+      <ion-toggle [(ngModel)]="deleteButton" (ionChange)="switchDel()"></ion-toggle>
   </ion-item>
 
 </ion-content>

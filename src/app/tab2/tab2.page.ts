@@ -11,6 +11,7 @@ import { Storage } from '@ionic/storage';
 })
 export class Tab2Page {
   tasks: any = [];
+  delBool: boolean;
 
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
     
@@ -20,6 +21,15 @@ export class Tab2Page {
       }
       else{
        this.storage.set('tasksArr', JSON.stringify(this.tasks));
+      }
+    });
+
+    this.storage.get('deleteBt').then((val) => {
+      if (val != undefined){
+       this.delBool = !val
+      }
+      else{
+       this.storage.set('deleteBt', false);
       }
     });
 
@@ -37,6 +47,17 @@ export class Tab2Page {
       return tasks2;
  
       } 
+  }
+
+  ionViewWillEnter(){
+    this.storage.get('deleteBt').then((val) => {
+      if (val != undefined){
+       this.delBool = !val
+      }
+      else{
+       this.storage.set('deleteBt', false);
+      }
+    });
   }
 
   removeCard(card) {

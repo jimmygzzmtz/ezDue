@@ -7,12 +7,12 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let card of getCards()">
+    <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
         <ion-card-content>
           <h2>{{ card.title }}</h2>
           <h3>{{ card.date | date : 'EEEE, MMM d, y, h:mm a'}}</h3>
           
-          <ion-fab vertical="top" horizontal="end" slot="fixed">
+          <ion-fab [hidden]="delBool" vertical="top" horizontal="end" slot="fixed">
               <ion-fab-button size="small" color="danger" (click)="removeCard(card)">
                 <ion-icon name="remove"></ion-icon>
               </ion-fab-button>

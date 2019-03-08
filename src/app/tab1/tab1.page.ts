@@ -15,6 +15,7 @@ export class Tab1Page {
   balance: number = 0;
 
   subBool: boolean;
+  delBool: boolean = false;
 
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
     
@@ -35,6 +36,15 @@ export class Tab1Page {
        this.storage.set('balanceVal', this.balance);
       }
     });
+
+    this.storage.get('deleteBt').then((val) => {
+      if (val != undefined){
+       this.delBool = !val
+      }
+      else{
+       this.storage.set('deleteBt', false);
+      }
+    });
     
   }
 
@@ -42,6 +52,15 @@ export class Tab1Page {
     this.storage.get('subPaymentsBool').then((val) => {
       if (val != undefined){
         this.subBool = val
+      }
+    });
+
+    this.storage.get('deleteBt').then((val) => {
+      if (val != undefined){
+       this.delBool = !val
+      }
+      else{
+       this.storage.set('deleteBt', false);
       }
     });
   }

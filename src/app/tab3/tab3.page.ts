@@ -12,6 +12,9 @@ export class Tab3Page {
 
   subBool: boolean;
   subPayBal: any;
+
+  delBool: boolean;
+  deleteButton: any;
   
   constructor(private storage: Storage){
     
@@ -53,6 +56,25 @@ export class Tab3Page {
 
     });
 
+    this.storage.get('deleteBt').then((val) => {
+      if (val != null){
+       this.deleteButton = val;
+      }
+      else{
+       this.storage.set('deleteBt', false);
+      }
+
+      
+      if(this.delBool == false){
+        this.deleteButton = false;
+      }
+      if(this.delBool == true){
+        this.deleteButton = true;
+      }
+      
+
+    });
+
   }
 
   switchRecur(){
@@ -75,6 +97,17 @@ export class Tab3Page {
     }
 
     this.storage.set('subPaymentsBool', this.subBool);
+  }
+
+  switchDel(){
+    if(this.deleteButton == false){
+      this.delBool = false;
+    }
+    if(this.deleteButton == true){
+      this.delBool = true;
+    }
+
+    this.storage.set('deleteBt', this.delBool);
   }
 
   getToggleCond(){
