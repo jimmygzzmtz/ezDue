@@ -11,7 +11,7 @@ export class ProductivityModalPage implements OnInit {
 
   taskString: any;
 
-  dateRegex: any = [/(for)?\s*(today|tomorrow|in a day|in \d+ days|next week|in a week|in \d+ weeks)/ig, 
+  dateRegex: any = [/(for)?\s*(today|tomorrow|in a day|in \d+ days|next week|in a week|in \d+ weeks|next month|in a month|in \d+ months|next year|in a year|in \d+ years)/ig, 
     /(for|on)?\s*(next)?\s*(monday|tuesday|wednesday|thursday|friday|saturday|sunday)/ig,
     /(for|on)?\s*(january \d+|february \d+|march \d+|april \d+|may \d+|june \d+|july \d+|august \d+|september \d+|october \d+|november \d+|december \d+)/ig];
 
@@ -32,46 +32,59 @@ export class ProductivityModalPage implements OnInit {
 
   async save(){
 
-    var title = this.taskString;
-    var date;
-    var hour;
-
-    for (let i = 0; i < this.dateRegex.length; i++){
-      let result = this.taskString.match(this.dateRegex[i]);
-      title = title.replace(result, '').trim();
-      if (date == undefined && result != null){
-        date = result[0];
-      }   
-    }
-
-    for (let i = 0; i < this.hourRegex.length; i++){
-      let result = this.taskString.match(this.hourRegex[i]);
-      title = title.replace(result, '').trim();
-      if (hour == undefined && result != null){
-        hour = result[0];
-      }
-    }
-
-    //default value for date
-    if(date != undefined){
-      date = this.stringToDate(date);
-    }
-    if(date == undefined){
-      date = new Date;
-    }
+    if (this.taskString != undefined){
+      var title = this.taskString;
+      var date;
+      var hour;
   
-    if(hour != undefined){
-      date = this.stringToTime(hour, date);
-    }
-
-    title = makeUpper(title);
-
-    var task = {
-      title: title,
-      date: date,
-    }
+      for (let i = 0; i < this.dateRegex.length; i++){
+        let result = this.taskString.match(this.dateRegex[i]);
+        title = title.replace(result, '').trim();
+        if (date == undefined && result != null){
+          date = result[0];
+        }   
+      }
+  
+      for (let i = 0; i < this.hourRegex.length; i++){
+        let result = this.taskString.match(this.hourRegex[i]);
+        title = title.replace(result, '').trim();
+        if (hour == undefined && result != null){
+          hour = result[0];
+        }
+      }
+  
+      //default value for date
+      if(date != undefined){
+        date = this.stringToDate(date);
+      }
+      if(date == undefined){
+        date = new Date;
+      }
     
-    this.modalController.dismiss(task);
+      if(hour != undefined){
+        date = this.stringToTime(hour, date);
+      }
+  
+      title = makeUpper(title);
+  
+      var task = {
+        title: title,
+        date: date,
+      }
+      
+      this.modalController.dismiss(task);
+    }
+    else{
+      const alert = await this.alertController.create({
+        header: 'Please input the task',
+        buttons: [
+          {
+              text: 'OK'
+          }
+      ]
+      });
+      await alert.present();
+    }
 
     function makeUpper(newTitle) {
       return newTitle.replace(/\w\S*/g, function(newTitle2){
@@ -111,6 +124,30 @@ export class ProductivityModalPage implements OnInit {
 
     if(date.match(/in \d+ weeks/i)){
       result.setDate(result.getDate() + (+date.match(/\d+/)*7));
+      newDate = result;
+      return newDate;
+    }
+
+    if(date.match(/next month|in a month/i)){
+      result.setMonth(result.getMonth() + 1);
+      newDate = result;
+      return newDate;
+    }
+
+    if(date.match(/in \d+ months/i)){
+      result.setMonth(result.getMonth() + (+date.match(/\d+/)));
+      newDate = result;
+      return newDate;
+    }
+
+    if(date.match(/next year|in a year/i)){
+      result.setFullYear(result.getFullYear() + 1);
+      newDate = result;
+      return newDate;
+    }
+
+    if(date.match(/in \d+ years/i)){
+      result.setFullYear(result.getFullYear() + (+date.match(/\d+/)));
       newDate = result;
       return newDate;
     }

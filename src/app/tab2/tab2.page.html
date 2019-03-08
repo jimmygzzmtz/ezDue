@@ -10,7 +10,7 @@
     <ion-card *ngFor="let card of getCards()">
         <ion-card-content>
           <h2>{{ card.title }}</h2>
-          <h3>{{ card.date | date : 'MMM d, y, h:mm a'}}</h3>
+          <h3>{{ card.date | date : 'EEEE, MMM d, y, h:mm a'}}</h3>
           
           <ion-fab vertical="top" horizontal="end" slot="fixed">
               <ion-fab-button size="small" color="danger" (click)="removeCard(card)">

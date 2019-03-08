@@ -17,7 +17,7 @@
   <ion-card *ngFor="let card of getCards()">
       <ion-card-content>
         <h2>{{ card.itemName }}</h2>
-        <h3>{{ card.datePicked | date}}</h3>
+        <h3>{{ card.datePicked | date : 'EEEE, MMM d, y'}}</h3>
         <h3 [hidden]="hideAmount(card)">${{ card.cashAmount }}</h3>
         
         <ion-fab vertical="top" horizontal="end" slot="fixed">

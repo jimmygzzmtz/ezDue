@@ -9,6 +9,9 @@ import { Storage } from '@ionic/storage';
 export class Tab3Page {
   recurBool: boolean;
   recurringPayments: any;
+
+  subBool: boolean;
+  subPayBal: any;
   
   constructor(private storage: Storage){
     
@@ -31,6 +34,25 @@ export class Tab3Page {
 
     });
 
+    this.storage.get('subPaymentsBool').then((val) => {
+      if (val != null){
+       this.subPayBal = val;
+      }
+      else{
+       this.storage.set('subPaymentsBool', false);
+      }
+
+      
+      if(this.subBool == true){
+        this.subPayBal = true;
+      }
+      if(this.subBool == false){
+        this.subPayBal = false;
+      }
+      
+
+    });
+
   }
 
   switchRecur(){
@@ -42,6 +64,17 @@ export class Tab3Page {
     }
 
     this.storage.set('recurringPaymentsBool', this.recurBool);
+  }
+
+  switchSub(){
+    if(this.subPayBal == true){
+      this.subBool = true;
+    }
+    if(this.subPayBal == false){
+      this.subBool = false;
+    }
+
+    this.storage.set('subPaymentsBool', this.subBool);
   }
 
   getToggleCond(){

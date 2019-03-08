@@ -14,6 +14,8 @@ export class Tab1Page {
   logs: any = [];
   balance: number = 0;
 
+  subBool: boolean;
+
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
     
     this.storage.get('logsArr').then((val) => {
@@ -34,6 +36,14 @@ export class Tab1Page {
       }
     });
     
+  }
+
+  ionViewWillEnter(){
+    this.storage.get('subPaymentsBool').then((val) => {
+      if (val != undefined){
+        this.subBool = val
+      }
+    });
   }
 
   getCards() {
@@ -59,6 +69,11 @@ export class Tab1Page {
     let index = this.logs.indexOf(card);
 
         if(index > -1){
+            if(this.logs[index].type == "payment" && this.subBool == true){
+              this.balance = this.balance - +(this.logs[index].cashAmount);
+              this.storage.set('balanceVal', this.balance);
+            }
+
             this.logs.splice(index, 1);
             this.storage.set('logsArr', JSON.stringify(this.logs));
         }
@@ -79,7 +94,9 @@ export class Tab1Page {
     modal.onDidDismiss()
       .then((data) => {
         if (data.data != undefined){
-          data.data.itemName = makeUpper(data.data.itemName);
+          if(data.data.type != "expense" && data.data.type != "income"){
+            data.data.itemName = makeUpper(data.data.itemName);
+          }
 
           if (data.data.type == "expense"){
             this.balance = this.balance - +data.data.cashAmount
@@ -109,7 +126,6 @@ export class Tab1Page {
             if(data.data.recurMonths != undefined){
               for(let i = 0; i < +data.data.recurMonths; i++){
                 var newDate = new Date(data.data.datePicked);
-                //console.log(newDate);
                 newDate.setMonth(newDate.getMonth() + i)
                 if (this.logs == null){
                   this.logs = [];
@@ -124,8 +140,6 @@ export class Tab1Page {
                   var newData = Object.assign({},data.data);
                   newData.datePicked = newDate;
                   newData.recurMonths = undefined;
-                  //data.data.datePicked = newDate;
-                  console.log(newData);
                   this.logs.push(newData);
                 }
               }
