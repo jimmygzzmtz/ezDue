@@ -1,5 +1,7 @@
 {
   "name": "eZdue",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
