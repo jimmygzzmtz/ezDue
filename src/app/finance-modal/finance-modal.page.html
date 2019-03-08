@@ -31,6 +31,11 @@
         <ion-datetime [(ngModel)]="datePicked" display-format="MMM DD, YYYY" placeholder="Select Date" max="{{ this.getMaxYear() }}"></ion-datetime>
     </ion-item>
 
+    <ion-item [hidden]="hideRecur">
+        <ion-label># of Months</ion-label>
+        <ion-input [(ngModel)]="recurMonths" placeholder="3"></ion-input>
+    </ion-item>
+
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end" (click)="save()" slot="fixed">

@@ -60,7 +60,11 @@ export class ProductivityModalPage implements OnInit {
       date = new Date;
     }
   
-    date = this.stringToTime(hour, date);
+    if(hour != undefined){
+      date = this.stringToTime(hour, date);
+    }
+
+    title = makeUpper(title);
 
     var task = {
       title: title,
@@ -68,6 +72,12 @@ export class ProductivityModalPage implements OnInit {
     }
     
     this.modalController.dismiss(task);
+
+    function makeUpper(newTitle) {
+      return newTitle.replace(/\w\S*/g, function(newTitle2){
+          return newTitle2.charAt(0).toUpperCase() + newTitle2.substr(1).toLowerCase();
+      });
+    }
     
   }
 

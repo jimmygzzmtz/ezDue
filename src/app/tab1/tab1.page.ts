@@ -79,6 +79,8 @@ export class Tab1Page {
     modal.onDidDismiss()
       .then((data) => {
         if (data.data != undefined){
+          data.data.itemName = makeUpper(data.data.itemName);
+
           if (data.data.type == "expense"){
             this.balance = this.balance - +data.data.cashAmount
             this.storage.set('balanceVal', this.balance);
@@ -87,7 +89,7 @@ export class Tab1Page {
             this.balance = this.balance + +data.data.cashAmount
             this.storage.set('balanceVal', this.balance);
           }
-          if (data.data.type != "income" && data.data.type != "expense"){
+          if (data.data.type == "card"){
             if (this.logs == null){
               this.logs = [];
               this.logs.push({
@@ -102,7 +104,56 @@ export class Tab1Page {
             }
             this.storage.set('logsArr', JSON.stringify(this.logs));
           }
-        }     
+          
+          if (data.data.type == "payment"){
+            if(data.data.recurMonths != undefined){
+              for(let i = 0; i < +data.data.recurMonths; i++){
+                var newDate = new Date(data.data.datePicked);
+                //console.log(newDate);
+                newDate.setMonth(newDate.getMonth() + i)
+                if (this.logs == null){
+                  this.logs = [];
+                  this.logs.push({
+                    type: data.data.type,
+                    cashAmount: data.data.cashAmount,
+                    datePicked: newDate,
+                    itemName: data.data.itemName
+                  })
+                }
+                else{
+                  var newData = Object.assign({},data.data);
+                  newData.datePicked = newDate;
+                  newData.recurMonths = undefined;
+                  //data.data.datePicked = newDate;
+                  console.log(newData);
+                  this.logs.push(newData);
+                }
+              }
+              this.storage.set('logsArr', JSON.stringify(this.logs));
+            }
+            else{
+              if (this.logs == null){
+                this.logs = [];
+                this.logs.push({
+                  type: data.data.type,
+                  cashAmount: data.data.cashAmount,
+                  datePicked: data.data.datePicked,
+                  itemName: data.data.itemName
+                })
+              }
+              else{
+                this.logs.push(data.data);
+              }
+              this.storage.set('logsArr', JSON.stringify(this.logs));
+            }
+          }
+        }
+        
+        function makeUpper(newTitle) {
+          return newTitle.replace(/\w\S*/g, function(newTitle2){
+              return newTitle2.charAt(0).toUpperCase() + newTitle2.substr(1).toLowerCase();
+          });
+        }
     });
 
     await modal.present(); 

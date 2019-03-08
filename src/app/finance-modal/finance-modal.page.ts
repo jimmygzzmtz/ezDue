@@ -16,9 +16,19 @@ export class FinanceModalPage implements OnInit {
   hideAmount: any;
   hideName: any;
   hideDate: any;
+  hideRecur: any = 1;
+
+  recurBool: boolean;
+
+  recurMonths: any;
 
   constructor(public modalController: ModalController, public alertController: AlertController, private storage: Storage ) {
     
+    this.storage.get('recurringPaymentsBool').then((val) => {
+      if (val != null){
+       this.recurBool = val;
+      }
+    });
    
   }
 
@@ -31,8 +41,15 @@ export class FinanceModalPage implements OnInit {
       this.hideAmount = 1;
       this.hideName = 0;
       this.hideDate = 0;
+      this.hideRecur = 1;
     }
     if(type == 'payment'){
+      if(this.recurBool == true){
+        this.hideRecur = 0;
+      }
+      if(this.recurBool == false){
+        this.hideRecur = 1;
+      }
       this.hideAmount = 0;
       this.hideName = 0;
       this.hideDate = 0;
@@ -41,11 +58,13 @@ export class FinanceModalPage implements OnInit {
       this.hideAmount = 0;
       this.hideName = 1;
       this.hideDate = 1;
+      this.hideRecur = 1;
     }
     if(type == 'expense'){
       this.hideAmount = 0;
       this.hideName = 1;
       this.hideDate = 1;
+      this.hideRecur = 1;
     }
   }
 
@@ -84,7 +103,8 @@ export class FinanceModalPage implements OnInit {
             type: this.type,
             cashAmount: this.cashAmount,
             datePicked: this.datePicked,
-            itemName: this.itemName
+            itemName: this.itemName,
+            recurMonths: this.recurMonths
         }
       }
       if(this.type == "income" || this.type == "expense"){
