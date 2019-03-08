@@ -28,7 +28,7 @@ export class Tab1Page {
     });
 
     this.storage.get('balanceVal').then((val) => {
-      if (val != ""){
+      if (val != undefined){
        this.balance = val
       }
       else{

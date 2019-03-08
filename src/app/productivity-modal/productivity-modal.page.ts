@@ -53,7 +53,6 @@ export class ProductivityModalPage implements OnInit {
         }
       }
   
-      //default value for date
       if(date != undefined){
         date = this.stringToDate(date);
       }
@@ -95,7 +94,6 @@ export class ProductivityModalPage implements OnInit {
   }
 
 
-  //convert date string to real date
   stringToDate(date){
     var newDate = new Date;
     var result = new Date(newDate.valueOf());

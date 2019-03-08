@@ -4,20 +4,20 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary: #f99c11;
+  --ion-color-primary-rgb: 249,156,17;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-shade: #db890f;
+  --ion-color-primary-tint: #faa629;
 
   /** secondary **/
-  --ion-color-secondary: #0cd1e8;
-  --ion-color-secondary-rgb: 12, 209, 232;
+  --ion-color-secondary: #3e444c;
+  --ion-color-secondary-rgb: 62,68,76;
   --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #0bb8cc;
-  --ion-color-secondary-tint: #24d6ea;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #373c43;
+  --ion-color-secondary-tint: #51575e;
 
   /** tertiary **/
   --ion-color-tertiary: #7044ff;
@@ -74,4 +74,26 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --ion-tabbar-text-color-active: #f99c11;
+  --ion-background-color: #ECF0F3;
+
+  --ion-toolbar-background: #3e444c;
+  --ion-toolbar-color: white;
+
+  --ion-item-background: white;
+
+  .picker-md .picker-wrapper, .picker-md .picker-toolbar {
+   background-color: white;
+  }
+
+  .tab-selected{
+    color: #f99c11;
+  }
+
+  ion-tab-button {
+    --color-selected: #f99c11;
+  }
+
+  
 }

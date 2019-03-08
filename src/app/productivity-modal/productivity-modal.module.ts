@@ -5,12 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProductivityModalPage } from './productivity-modal.page';
-
 const routes: Routes = [
   {
     path: '',
-    component: ProductivityModalPage
   }
 ];
 
@@ -21,6 +18,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProductivityModalPage]
+  declarations: []
 })
 export class ProductivityModalPageModule {}

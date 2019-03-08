@@ -5,14 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FinanceModalPage } from './finance-modal.page';
-
 import { IonicStorageModule } from '@ionic/storage';
 
 const routes: Routes = [
   {
     path: '',
-    component: FinanceModalPage
   }
 ];
 
@@ -24,6 +21,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     IonicStorageModule.forRoot()
   ],
-  declarations: [FinanceModalPage]
+  declarations: []
 })
 export class FinanceModalPageModule {}
