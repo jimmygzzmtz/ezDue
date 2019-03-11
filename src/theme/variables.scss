@@ -95,5 +95,9 @@
     --color-selected: #f99c11;
   }
 
+  ion-card {
+    display: block;
+    touch-action: auto !important;
+  }
   
 }

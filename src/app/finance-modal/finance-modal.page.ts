@@ -22,11 +22,19 @@ export class FinanceModalPage implements OnInit {
 
   recurMonths: any;
 
+  balHistBool: boolean;
+
   constructor(public modalController: ModalController, public alertController: AlertController, private storage: Storage ) {
     
     this.storage.get('recurringPaymentsBool').then((val) => {
       if (val != null){
        this.recurBool = val;
+      }
+    });
+
+    this.storage.get('balanceBt').then((val) => {
+      if (val != null){
+       this.balHistBool = val;
       }
     });
    
@@ -54,15 +62,15 @@ export class FinanceModalPage implements OnInit {
       this.hideName = 0;
       this.hideDate = 0;
     }
-    if(type == 'income'){
+    if(type == 'income' || type == 'expense'){
+      if(this.balHistBool == true){
+        this.hideName = 0;
+      }
+      if(this.balHistBool == false){
+        this.hideName = 1;
+      }
       this.hideAmount = 0;
-      this.hideName = 1;
-      this.hideDate = 1;
-      this.hideRecur = 1;
-    }
-    if(type == 'expense'){
-      this.hideAmount = 0;
-      this.hideName = 1;
+      //this.hideName = 1;
       this.hideDate = 1;
       this.hideRecur = 1;
     }
@@ -77,8 +85,32 @@ export class FinanceModalPage implements OnInit {
     return (currentDate.getFullYear() + 20).toString();   
   }
 
+  checkEmpty(){
+
+    if(this.type == undefined){
+      return true;
+    }
+
+    if(this.type == "card" && (this.itemName == undefined || this.itemName == "" || this.datePicked == undefined)){
+      return true;
+    }
+
+    if(this.type == "payment" && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "" || this.datePicked == undefined)){
+      return true;
+    }
+
+    if((this.type == "income" || this.type == "expense") && (this.balHistBool == false) && (this.cashAmount == undefined || this.cashAmount == "")){
+      return true;
+    }
+
+    if((this.type == "income" || this.type == "expense") && (this.balHistBool == true) && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "")){
+      return true;
+    }
+
+  }
+
   async save(){
-    if(this.type == undefined || (this.type == "card" && (this.itemName == undefined || this.datePicked == undefined)) || (this.type == "payment" && (this.itemName == undefined || this.cashAmount == undefined || this.datePicked == undefined)) || (this.type == "income" && (this.cashAmount == undefined)) || (this.type == "expense" && (this.cashAmount == undefined)) ){
+    if(this.checkEmpty()){
       const alert = await this.alertController.create({
         header: 'Please fill in all the inputs',
         buttons: [
@@ -108,10 +140,26 @@ export class FinanceModalPage implements OnInit {
         }
       }
       if(this.type == "income" || this.type == "expense"){
-        finLog = {
+
+        let currentDate = new Date;
+        
+        if(this.balHistBool == true){
+          finLog = {
             type: this.type,
-            cashAmount: this.cashAmount
+            cashAmount: this.cashAmount,
+            itemName: this.itemName,
+            datePicked: currentDate
+          }
         }
+        
+        else{
+          finLog = {
+            type: this.type,
+            cashAmount: this.cashAmount,
+            datePicked: currentDate
+          } 
+        } 
+
       }
       this.modalController.dismiss(finLog);
     }

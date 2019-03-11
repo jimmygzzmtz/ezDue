@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Balance History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
+        <ion-card-content>
+
+          <h2>{{ card.type.toUpperCase() }}: {{ card.itemName }}</h2>
+          <h3>{{ card.datePicked | date : 'EEEE, MMM d, y'}}</h3>
+          <h3>${{ card.cashAmount }}</h3>
+          
+          <ion-fab [hidden]="delBool" vertical="top" horizontal="end" slot="fixed">
+              <ion-fab-button size="small" color="danger" (click)="removeCard(card)">
+                <ion-icon name="remove"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+  
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="start" (click)="dismiss()" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="close"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

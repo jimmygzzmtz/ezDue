@@ -15,6 +15,9 @@ export class Tab3Page {
 
   delBool: boolean;
   deleteButton: any;
+
+  balBool: boolean;
+  balanceHistory: any;
   
   constructor(private storage: Storage){
     
@@ -75,6 +78,26 @@ export class Tab3Page {
 
     });
 
+    this.storage.get('balanceBt').then((val) => {
+      if (val != null){
+       this.balanceHistory = val;
+      }
+      else{
+       this.storage.set('balanceBt', true);
+       this.balBool = true;
+      }
+
+      
+      if(this.balBool == false){
+        this.balanceHistory = false;
+      }
+      if(this.balBool == true){
+        this.balanceHistory = true;
+      }
+      
+
+    });
+
   }
 
   switchRecur(){
@@ -108,6 +131,17 @@ export class Tab3Page {
     }
 
     this.storage.set('deleteBt', this.delBool);
+  }
+
+  switchBalance(){
+    if(this.balanceHistory == false){
+      this.balBool = false;
+    }
+    if(this.balanceHistory == true){
+      this.balBool = true;
+    }
+
+    this.storage.set('balanceBt', this.balBool);
   }
 
   getToggleCond(){

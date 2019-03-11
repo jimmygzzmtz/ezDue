@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { FinanceModalPage } from '../finance-modal/finance-modal.page';
 import { Storage } from '@ionic/storage';
+import { BalanceModalPage } from '../balance-modal/balance-modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -16,6 +17,7 @@ export class Tab1Page {
 
   subBool: boolean;
   delBool: boolean = false;
+  balBool: boolean;
 
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
     
@@ -45,6 +47,15 @@ export class Tab1Page {
        this.storage.set('deleteBt', false);
       }
     });
+
+    this.storage.get('balanceBt').then((val) => {
+      if (val != undefined){
+       this.balBool = !val
+      }
+      else{
+       this.storage.set('balanceBt', true);
+      }
+    });
     
   }
 
@@ -63,6 +74,16 @@ export class Tab1Page {
        this.storage.set('deleteBt', false);
       }
     });
+
+    this.storage.get('balanceBt').then((val) => {
+      if (val != undefined){
+       this.balBool = !val
+      }
+      else{
+       this.storage.set('balanceBt', true);
+      }
+    });
+
   }
 
   getCards() {
@@ -88,12 +109,27 @@ export class Tab1Page {
     let index = this.logs.indexOf(card);
 
         if(index > -1){
+            var cardCopy = this.logs[index].valueOf()
+
             if(this.logs[index].type == "payment" && this.subBool == true){
               this.balance = this.balance - +(this.logs[index].cashAmount);
               this.storage.set('balanceVal', this.balance);
+
             }
 
             this.logs.splice(index, 1);
+
+            console.log("hi " + JSON.stringify(cardCopy))
+
+            if(this.balBool == false && cardCopy.type == "payment" && this.subBool == true){
+              this.logs.push({
+                type: "expense",
+                cashAmount: +(cardCopy.cashAmount),
+                itemName: card.itemName,
+                datePicked: card.datePicked
+              })
+              
+            }
             this.storage.set('logsArr', JSON.stringify(this.logs));
         }
 
@@ -117,14 +153,38 @@ export class Tab1Page {
             data.data.itemName = makeUpper(data.data.itemName);
           }
 
-          if (data.data.type == "expense"){
-            this.balance = this.balance - +data.data.cashAmount
+          if (data.data.type == "expense" || data.data.type == "income"){
+            
+            if(data.data.type == "expense"){
+              this.balance = this.balance - +data.data.cashAmount
+            }
+            if(data.data.type == "income"){
+              this.balance = this.balance + +data.data.cashAmount
+            }
+            
             this.storage.set('balanceVal', this.balance);
+
+            if(data.data.itemName != "" && data.data.itemName != undefined){
+              data.data.itemName = makeUpper(data.data.itemName);
+
+              if (this.logs == null){
+                this.logs = [];
+                this.logs.push({
+                  type: data.data.type,
+                  cashAmount: data.data.cashAmount,
+                  itemName: data.data.itemName,
+                  datePicked: data.data.datePicked
+                })
+              }
+              else{
+                this.logs.push(data.data);
+              }
+              console.log("i did it")
+              this.storage.set('logsArr', JSON.stringify(this.logs));
+
+            }
           }
-          if (data.data.type == "income"){
-            this.balance = this.balance + +data.data.cashAmount
-            this.storage.set('balanceVal', this.balance);
-          }
+
           if (data.data.type == "card"){
             if (this.logs == null){
               this.logs = [];
@@ -187,6 +247,40 @@ export class Tab1Page {
               return newTitle2.charAt(0).toUpperCase() + newTitle2.substr(1).toLowerCase();
           });
         }
+    });
+
+    await modal.present(); 
+
+  }
+
+  async openBalance() {
+    const modal = await this.modalController.create({
+      component: BalanceModalPage,
+      componentProps: { 
+      }
+    });
+
+    modal.onDidDismiss()
+      .then(() => {
+        
+        this.storage.get('balanceVal').then((val) => {
+          if (val != undefined){
+           this.balance = val
+          }
+          else{
+           this.storage.set('balanceVal', this.balance);
+          }
+        });
+
+        this.storage.get('logsArr').then((val) => {
+          if (val != undefined){
+           this.logs = JSON.parse(val)
+          }
+          else{
+           this.storage.set('logsArr', JSON.stringify(this.logs));
+          }
+        });
+        
     });
 
     await modal.present(); 

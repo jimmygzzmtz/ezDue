@@ -9,6 +9,13 @@
 <ion-card>
     <ion-card-content>
       <h1>Balance: ${{ this.balance }}</h1>
+
+      <ion-fab [hidden]="balBool" vertical="center" horizontal="end" slot="fixed">
+        <ion-fab-button size="small" (click)="openBalance()">
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
     </ion-card-content>
 </ion-card>
 

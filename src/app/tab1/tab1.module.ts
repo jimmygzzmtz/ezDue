@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 import { FinanceModalPage } from '../finance-modal/finance-modal.page';
+import { BalanceModalPage } from '../balance-modal/balance-modal.page';
 import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
@@ -15,7 +16,7 @@ import { IonicStorageModule } from '@ionic/storage';
     RouterModule.forChild([{ path: '', component: Tab1Page }]),
     IonicStorageModule.forRoot()
   ],
-  declarations: [Tab1Page, FinanceModalPage],
-  entryComponents: [FinanceModalPage]
+  declarations: [Tab1Page, FinanceModalPage, BalanceModalPage],
+  entryComponents: [FinanceModalPage, BalanceModalPage]
 })
 export class Tab1PageModule {}
