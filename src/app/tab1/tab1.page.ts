@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { FinanceModalPage } from '../finance-modal/finance-modal.page';
 import { Storage } from '@ionic/storage';
 import { BalanceModalPage } from '../balance-modal/balance-modal.page';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -19,7 +20,7 @@ export class Tab1Page {
   delBool: boolean = false;
   balBool: boolean;
 
-  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
+  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications){
     
     this.storage.get('logsArr').then((val) => {
       if (val != "[]"){
@@ -151,6 +152,29 @@ export class Tab1Page {
         if (data.data != undefined){
           if(data.data.type != "expense" && data.data.type != "income"){
             data.data.itemName = makeUpper(data.data.itemName);
+
+            var d1 = new Date(data.data.datePicked);
+
+            d1.setHours(d1.getHours() - 1);
+
+            var d2 = new Date(data.data.datePicked);
+
+            d2.setDate(d2.getDate() - 1);
+
+            if(d1 > new Date()){
+              this.localNotifications.schedule({
+                text: data.data.itemName,
+                trigger: {at: d1}
+              });
+            }
+
+            if(d2 > new Date()){
+              this.localNotifications.schedule({
+                text: data.data.itemName,
+                trigger: {at: d2}
+              });
+            }
+            
           }
 
           if (data.data.type == "expense" || data.data.type == "income"){
@@ -179,7 +203,6 @@ export class Tab1Page {
               else{
                 this.logs.push(data.data);
               }
-              console.log("i did it")
               this.storage.set('logsArr', JSON.stringify(this.logs));
 
             }
@@ -247,6 +270,9 @@ export class Tab1Page {
               return newTitle2.charAt(0).toUpperCase() + newTitle2.substr(1).toLowerCase();
           });
         }
+        
+        
+        
     });
 
     await modal.present(); 

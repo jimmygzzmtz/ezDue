@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { ProductivityModalPage } from '../productivity-modal/productivity-modal.page';
 import { Storage } from '@ionic/storage';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-tab2',
@@ -13,7 +14,7 @@ export class Tab2Page {
   tasks: any = [];
   delBool: boolean;
 
-  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
+  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications){
     
     this.storage.get('tasksArr').then((val) => {
       if (val != "[]"){
@@ -92,6 +93,28 @@ export class Tab2Page {
               this.tasks.push(data.data);
             }
             this.storage.set('tasksArr', JSON.stringify(this.tasks));
+
+            var d1 = new Date(data.data.datePicked);
+
+            d1.setHours(d1.getHours() - 1);
+
+            var d2 = new Date(data.data.datePicked);
+
+            d2.setDate(d2.getDate() - 1);
+
+            if(d1 > new Date()){
+              this.localNotifications.schedule({
+                text: data.data.title,
+                trigger: {at: d1}
+              });
+            }
+
+            if(d2 > new Date()){
+              this.localNotifications.schedule({
+                text: data.data.title,
+                trigger: {at: d2}
+              });
+            }
           }
     });
 
