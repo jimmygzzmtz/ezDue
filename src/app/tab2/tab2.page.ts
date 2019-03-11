@@ -13,6 +13,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 export class Tab2Page {
   tasks: any = [];
   delBool: boolean;
+  notifBool: boolean;
 
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications){
     
@@ -31,6 +32,15 @@ export class Tab2Page {
       }
       else{
        this.storage.set('deleteBt', false);
+      }
+    });
+
+    this.storage.get('notifBt').then((val) => {
+      if (val != undefined){
+       this.notifBool = val
+      }
+      else{
+       this.storage.set('notifBt', true);
       }
     });
 
@@ -57,6 +67,15 @@ export class Tab2Page {
       }
       else{
        this.storage.set('deleteBt', false);
+      }
+    });
+
+    this.storage.get('notifBt').then((val) => {
+      if (val != undefined){
+       this.notifBool = val
+      }
+      else{
+       this.storage.set('notifBt', true);
       }
     });
   }
@@ -94,27 +113,31 @@ export class Tab2Page {
             }
             this.storage.set('tasksArr', JSON.stringify(this.tasks));
 
-            var d1 = new Date(data.data.datePicked);
+            if (this.notifBool == true){
+              var d1 = new Date(data.data.datePicked);
 
-            d1.setHours(d1.getHours() - 1);
+              d1.setHours(d1.getHours() - 1);
 
-            var d2 = new Date(data.data.datePicked);
+              var d2 = new Date(data.data.datePicked);
 
-            d2.setDate(d2.getDate() - 1);
+              d2.setDate(d2.getDate() - 1);
 
-            if(d1 > new Date()){
-              this.localNotifications.schedule({
-                text: data.data.title,
-                trigger: {at: d1}
-              });
+              if(d1 > new Date()){
+                this.localNotifications.schedule({
+                  text: data.data.title,
+                  trigger: {at: d1}
+                });
+              }
+
+              if(d2 > new Date()){
+                this.localNotifications.schedule({
+                  text: data.data.title,
+                  trigger: {at: d2}
+                });
+              }
             }
 
-            if(d2 > new Date()){
-              this.localNotifications.schedule({
-                text: data.data.title,
-                trigger: {at: d2}
-              });
-            }
+            
           }
     });
 

@@ -18,6 +18,9 @@ export class Tab3Page {
 
   balBool: boolean;
   balanceHistory: any;
+
+  notifBool: boolean;
+  showNotif: any;
   
   constructor(private storage: Storage){
     
@@ -98,6 +101,26 @@ export class Tab3Page {
 
     });
 
+    this.storage.get('notifBt').then((val) => {
+      if (val != null){
+       this.showNotif = val;
+      }
+      else{
+       this.storage.set('notifBt', true);
+       this.notifBool = true;
+      }
+
+      
+      if(this.notifBool == false){
+        this.showNotif = false;
+      }
+      if(this.notifBool == true){
+        this.showNotif = true;
+      }
+      
+
+    });
+
   }
 
   switchRecur(){
@@ -142,6 +165,17 @@ export class Tab3Page {
     }
 
     this.storage.set('balanceBt', this.balBool);
+  }
+
+  switchNotif(){
+    if(this.showNotif == false){
+      this.notifBool = false;
+    }
+    if(this.showNotif == true){
+      this.notifBool = true;
+    }
+
+    this.storage.set('notifBt', this.notifBool);
   }
 
   getToggleCond(){
