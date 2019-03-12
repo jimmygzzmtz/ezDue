@@ -15,8 +15,8 @@ export class ProductivityModalPage implements OnInit {
     /(for|on)?\s*(next)?\s*(monday|tuesday|wednesday|thursday|friday|saturday|sunday)/ig,
     /(for|on)?\s*(january \d+|february \d+|march \d+|april \d+|may \d+|june \d+|july \d+|august \d+|september \d+|october \d+|november \d+|december \d+)/ig];
 
-  hourRegex: any = [/(at)?\s*((\d+)\s*(am|pm))/ig, 
-    /(at)?\s*((\d+):(\d+)\s*(am|pm))/ig, /(at)?\s*((\d+):(\d+))/ig, /at\s*(\d+)/ig];
+  hourRegex: any = [/(at)?\s*((\d+):(\d+)\s*(am|pm))/ig, /(at)?\s*((\d+):(\d+))/ig,
+    /(at)?\s*((\d+)\s*(am|pm))/ig, /at\s*(\d+)/ig];
 
   constructor(public modalController: ModalController, public alertController: AlertController, private storage: Storage ) {
     
@@ -232,7 +232,15 @@ export class ProductivityModalPage implements OnInit {
   }
 
   stringToTime(hour, date){
+    
     var hourNum = +(hour.match(/\d+/))
+    var minNum = 0;
+
+    if(hour.match(/:/)){
+      let copyHour = hour.valueOf();
+      copyHour = copyHour.substring(copyHour.match(/:/).index + 1);
+      minNum = +(copyHour.match(/\d+/));
+    }
 
     if(hour.match(/pm/)){
       hourNum = hourNum + 12;
@@ -246,7 +254,8 @@ export class ProductivityModalPage implements OnInit {
       date = result;
     }
 
-    date.setHours(hourNum,0,0,0);
+
+    date.setHours(hourNum,minNum,0,0);
 
     return date;
   }
