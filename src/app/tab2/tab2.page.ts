@@ -114,29 +114,30 @@ export class Tab2Page {
             this.storage.set('tasksArr', JSON.stringify(this.tasks));
 
             if (this.notifBool == true){
-              var d1 = new Date(data.data.datePicked);
+              var d1 = new Date(data.data.date);
 
               d1.setHours(d1.getHours() - 1);
 
-              var d2 = new Date(data.data.datePicked);
+              var d2 = new Date(data.data.date);
 
               d2.setDate(d2.getDate() - 1);
 
-              if(d1 > new Date()){
+              let currentDate = new Date();
+
+              if(d1 > currentDate){
                 this.localNotifications.schedule({
                   text: data.data.title,
                   trigger: {at: d1}
                 });
               }
 
-              if(d2 > new Date()){
+              if(d2 > currentDate){
                 this.localNotifications.schedule({
                   text: data.data.title,
                   trigger: {at: d2}
                 });
               }
             }
-
             
           }
     });

@@ -22,7 +22,7 @@ export class Tab1Page {
   notifBool: boolean;
 
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications){
-    
+
     this.storage.get('logsArr').then((val) => {
       if (val != "[]"){
        this.logs = JSON.parse(val)
