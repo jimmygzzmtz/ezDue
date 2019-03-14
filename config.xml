@@ -83,10 +83,6 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^3.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-local-notification" spec="0.9.0-beta.2" />
-    <plugin name="cordova-admob-plus" spec="0.24.1">
-        <variable name="APP_ID_ANDROID" value="ca-app-pub-5122351026058644~8907962828" />
-        <variable name="PLAY_SERVICES_VERSION" value="17.1.2" />
-    </plugin>
     <plugin name="cordova-plugin-admob-free" spec="0.25.0">
         <variable name="ADMOB_APP_ID" value="ca-app-pub-5122351026058644~8907962828" />
     </plugin>

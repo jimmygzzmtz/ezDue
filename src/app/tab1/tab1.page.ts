@@ -23,22 +23,24 @@ export class Tab1Page {
   balBool: boolean;
   notifBool: boolean;
 
-  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private admobFree: AdMobFree, private localNotifications: LocalNotifications){
+  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications, private admobFree: AdMobFree){
 
+    
     const bannerConfig: AdMobFreeBannerConfig = {
-      // add your config here
-      // for the sake of this example we will just use the test config
-      isTesting: true,
-      autoShow: true
+      isTesting: false,
+      autoShow: true,
+      id: "ca-app-pub-5122351026058644/2830952715"
      };
      this.admobFree.banner.config(bannerConfig);
      
+     
      this.admobFree.banner.prepare()
        .then(() => {
-         // banner Ad is ready
-         // if we set autoShow to false, then we will need to call the show method here
+
        })
        .catch(e => console.log(e));
+      
+    
 
 
     this.storage.get('logsArr').then((val) => {
