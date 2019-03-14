@@ -236,6 +236,10 @@ export class ProductivityModalPage implements OnInit {
     var hourNum = +(hour.match(/\d+/))
     var minNum = 0;
 
+    if(hourNum == 12){
+      hourNum = 0;
+    }
+
     if(hour.match(/:/)){
       let copyHour = hour.valueOf();
       copyHour = copyHour.substring(copyHour.match(/:/).index + 1);
@@ -244,11 +248,12 @@ export class ProductivityModalPage implements OnInit {
 
     if(hour.match(/pm/)){
       hourNum = hourNum + 12;
+      console.log("lol");
     }
 
     let newDate = new Date;
 
-    if(+newDate.getHours() > hourNum && newDate.getDate() == date.getDate() && newDate.getMonth() == date.getMonth() && newDate.getFullYear() == date.getFullYear()){
+    if((+newDate.getHours() > hourNum || (+newDate.getHours() == hourNum && +newDate.getMinutes() > minNum)) && newDate.getDate() == date.getDate() && newDate.getMonth() == date.getMonth() && newDate.getFullYear() == date.getFullYear()){
       var result = new Date(date.valueOf());
       result.setDate(result.getDate() + 1);
       date = result;

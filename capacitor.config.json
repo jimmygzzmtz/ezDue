@@ -1,0 +1,6 @@
+{
+  "appId": "com.jimmygzzmtz.ezdue",
+  "appName": "eZdue",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

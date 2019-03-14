@@ -125,17 +125,21 @@ export class Tab2Page {
               let currentDate = new Date();
 
               if(d1 > currentDate){
+                
                 this.localNotifications.schedule({
                   text: data.data.title,
                   trigger: {at: d1}
                 });
+                
               }
 
               if(d2 > currentDate){
+                
                 this.localNotifications.schedule({
                   text: data.data.title,
                   trigger: {at: d2}
                 });
+                
               }
             }
             
