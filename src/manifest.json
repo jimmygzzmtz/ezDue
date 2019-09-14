@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "ezDue",
+  "short_name": "ezDue",
   "theme_color": "#3e444c",
   "background_color": "#fafafa",
   "display": "standalone",
