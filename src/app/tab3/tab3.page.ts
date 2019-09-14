@@ -67,7 +67,7 @@ export class Tab3Page {
        this.deleteButton = val;
       }
       else{
-       this.storage.set('deleteBt', false);
+       this.storage.set('deleteBt', true);
       }
 
       
@@ -106,8 +106,8 @@ export class Tab3Page {
        this.showNotif = val;
       }
       else{
-       this.storage.set('notifBt', true);
-       this.notifBool = true;
+       this.storage.set('notifBt', false);
+       this.notifBool = false;
       }
 
       

@@ -31,7 +31,7 @@ export class Tab2Page {
        this.delBool = !val
       }
       else{
-       this.storage.set('deleteBt', false);
+       this.storage.set('deleteBt', true);
       }
     });
 
@@ -40,7 +40,7 @@ export class Tab2Page {
        this.notifBool = val
       }
       else{
-       this.storage.set('notifBt', true);
+       this.storage.set('notifBt', false);
       }
     });
 
@@ -66,7 +66,7 @@ export class Tab2Page {
        this.delBool = !val
       }
       else{
-       this.storage.set('deleteBt', false);
+       this.storage.set('deleteBt', true);
       }
     });
 
@@ -75,7 +75,7 @@ export class Tab2Page {
        this.notifBool = val
       }
       else{
-       this.storage.set('notifBt', true);
+       this.storage.set('notifBt', false);
       }
     });
   }

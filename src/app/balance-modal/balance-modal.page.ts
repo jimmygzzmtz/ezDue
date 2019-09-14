@@ -31,7 +31,7 @@ export class BalanceModalPage implements OnInit {
        this.delBool = !val
       }
       else{
-       this.storage.set('deleteBt', false);
+       this.storage.set('deleteBt', true);
       }
     });
 
