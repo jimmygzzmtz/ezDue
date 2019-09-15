@@ -8,18 +8,23 @@
 
     <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
         <ion-card-content>
-          <h2>
-              <span translate>{{ card.type.toUpperCase() | translate:card}}</span>
-              <span>: {{ card.itemName }}</span>
-          </h2>
+          <div>
+            <ion-button [hidden]="delBool" float-right color="danger" (click)="removeCard(card)">
+                <ion-icon name="remove"></ion-icon>
+              </ion-button>
+              <ion-button float-right (click)="editCard(card)">
+                <ion-icon name="create"></ion-icon>
+              </ion-button>
+              <h2>
+                  <span translate>{{ card.type.toUpperCase() | translate:card}}</span>
+                  <span>: {{ card.itemName }}</span>
+              </h2>
+          </div>
+         
           <h3>{{ card.datePicked | date : 'EEEE, MMM d, y' : '' : this.language}}</h3>
           <h3>${{ card.cashAmount }}</h3>
-          
-          <ion-fab [hidden]="delBool" vertical="top" horizontal="end" slot="fixed">
-              <ion-fab-button size="small" color="danger" (click)="removeCard(card)">
-                <ion-icon name="remove"></ion-icon>
-              </ion-fab-button>
-            </ion-fab>
+            
+         
   
         </ion-card-content>
       </ion-card>

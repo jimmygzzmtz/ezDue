@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { FinanceModalPage } from '../finance-modal/finance-modal.page';
 
 @Component({
   selector: 'app-balance-modal',
@@ -96,6 +97,49 @@ export class BalanceModalPage implements OnInit {
             this.logs.splice(index, 1);
             this.storage.set('logsArr', JSON.stringify(this.logs));
         }
+
+  }
+
+  async editCard(card) {
+
+    let index = this.logs.indexOf(card);
+
+    const modal = await this.modalController.create({
+      component: FinanceModalPage,
+      componentProps: { 
+        editedLog: card
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+          if (data.data != undefined){
+            if(this.logs[index].type == "income"){
+              this.balance = this.balance - +(this.logs[index].cashAmount);
+              this.storage.set('balanceVal', this.balance);
+            }
+
+            if(this.logs[index].type == "expense"){
+              this.balance = this.balance + +(this.logs[index].cashAmount);
+              this.storage.set('balanceVal', this.balance);
+            }
+
+            this.logs[index] = data.data
+            this.storage.set('logsArr', JSON.stringify(this.logs));
+
+            if(data.data.type == "income"){
+              this.balance = this.balance + +(this.logs[index].cashAmount);
+              this.storage.set('balanceVal', this.balance);
+            }
+
+            if(data.data.type == "expense"){
+              this.balance = this.balance - +(this.logs[index].cashAmount);
+              this.storage.set('balanceVal', this.balance);
+            }
+          }
+    });
+
+    await modal.present(); 
 
   }
 

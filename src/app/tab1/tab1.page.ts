@@ -177,6 +177,29 @@ export class Tab1Page {
 
   }
 
+  async editCard(card) {
+
+    let index = this.logs.indexOf(card);
+
+    const modal = await this.modalController.create({
+      component: FinanceModalPage,
+      componentProps: { 
+        editedLog: card
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+          if (data.data != undefined){
+            this.logs[index] = data.data
+            this.storage.set('logsArr', JSON.stringify(this.logs));
+          }
+    });
+
+    await modal.present(); 
+
+  }
+
   hideAmount(card){
     return (card.cashAmount == undefined);
   }

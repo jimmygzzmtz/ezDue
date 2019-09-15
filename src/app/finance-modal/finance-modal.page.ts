@@ -21,10 +21,10 @@ export class FinanceModalPage implements OnInit {
   hideCurr: any = 1;
 
   recurBool: boolean;
-
   recurMonths: any;
-
   balHistBool: boolean;
+
+  editedLog: any;
 
   constructor(public modalController: ModalController, public alertController: AlertController, private storage: Storage, private _translate: TranslateService ) {
     
@@ -42,8 +42,17 @@ export class FinanceModalPage implements OnInit {
    
   }
 
-  ngOnInit() {
+  ionViewWillEnter(){
+    if(this.editedLog != undefined){
+      this.type = this.editedLog.type
+      this.cashAmount = this.editedLog.cashAmount
+      this.datePicked = this.editedLog.datePicked
+      this.itemName = this.editedLog.itemName
+      this.recurMonths = this.editedLog.recurMonths
+    }
+  }
 
+  ngOnInit() {
   }
 
   onChange(type){
@@ -132,7 +141,6 @@ export class FinanceModalPage implements OnInit {
       await alert.present();
     }
     else{
-      let cash2 = this.cashAmount.replace(/\,/g,"");
       var finLog: any = {};
       if(this.type == "card"){
         finLog = {
@@ -144,7 +152,7 @@ export class FinanceModalPage implements OnInit {
       if(this.type == "payment"){
         finLog = {
             type: this.type,
-            cashAmount: cash2,
+            cashAmount: this.cashAmount.replace(/\,/g,""),
             datePicked: this.datePicked,
             itemName: this.itemName,
             recurMonths: this.recurMonths
@@ -157,7 +165,7 @@ export class FinanceModalPage implements OnInit {
         if(this.balHistBool == true){
           finLog = {
             type: this.type,
-            cashAmount: cash2,
+            cashAmount: this.cashAmount.replace(/\,/g,""),
             itemName: this.itemName,
             datePicked: currentDate
           }
@@ -166,7 +174,7 @@ export class FinanceModalPage implements OnInit {
         else{
           finLog = {
             type: this.type,
-            cashAmount: cash2,
+            cashAmount: this.cashAmount.replace(/\,/g,""),
             datePicked: currentDate
           } 
         } 

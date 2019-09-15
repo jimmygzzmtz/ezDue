@@ -96,6 +96,28 @@ export class Tab2Page {
 
   }
 
+  async editCard(card) {
+
+    let index = this.tasks.indexOf(card);
+
+    const modal = await this.modalController.create({
+      component: ProductivityModalPage,
+      componentProps: { 
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+          if (data.data != undefined){
+            this.tasks[index] = data.data
+            this.storage.set('tasksArr', JSON.stringify(this.tasks));
+          }
+    });
+
+    await modal.present(); 
+
+  }
+
   async logProductivity() {
     const modal = await this.modalController.create({
       component: ProductivityModalPage,
