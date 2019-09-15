@@ -1,57 +1,64 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title text-center>
-      eZdue
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-  <ion-item>
-      <ion-label translate>Language</ion-label>
-      <ion-select [(ngModel)]="lang" (ionChange)="switchLang(lang)" placeholder="{{ 'SelectOne' | translate }}">
-        <ion-select-option value="en" translate>English</ion-select-option>
-        <ion-select-option value="es" translate>Spanish</ion-select-option>
-      </ion-select>
-    </ion-item>
-  
-  <ion-item>
-      <ion-label translate>RecurringPaymentSetting</ion-label>
-      <ion-toggle [(ngModel)]="recurringPayments" (ionChange)="switchRecur()"></ion-toggle>
-  </ion-item>
-
-  <ion-item>
-      <ion-label translate>SubtractPayments</ion-label>
-      <ion-toggle [(ngModel)]="subPayBal" (ionChange)="switchSub()"></ion-toggle>
-  </ion-item>
-
-  <ion-item>
-      <ion-label translate>ShowDeleteBt</ion-label>
-      <ion-toggle [(ngModel)]="deleteButton" (ionChange)="switchDel()"></ion-toggle>
-  </ion-item>
-
-  <ion-item>
-    <ion-label translate>SaveBalHistory</ion-label>
-    <ion-toggle [(ngModel)]="balanceHistory" (ionChange)="switchBalance()"></ion-toggle>
-  </ion-item>
-
-  <ion-item (click)="clearStorage()">
-      <ion-label translate>ClearSt</ion-label>
-  </ion-item>
-
-  <ion-item>
-      <ion-label>
-        <span translate>Version</span>
-        <span>1.2</span>
-      </ion-label>
-  </ion-item>
-
-  <!--
-  <ion-item>
-    <ion-label>Notifications</ion-label>
-    <ion-toggle [(ngModel)]="showNotif" (ionChange)="switchNotif()"></ion-toggle>
-  </ion-item>
-  //-->
-
-</ion-content>
+<body>
+    <ion-header>
+        <ion-toolbar>
+          <ion-title text-center>
+            eZdue
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content>
+        <ion-item lines="full">
+            <ion-icon slot="start" name="moon"></ion-icon>
+            <ion-label>Dark Theme</ion-label>
+            <ion-toggle id="darkThemeToggle" (ionChange)="switchDarkTheme()"></ion-toggle>
+        </ion-item>
+      
+        <ion-item>
+            <ion-label translate>Language</ion-label>
+            <ion-select [(ngModel)]="lang" (ionChange)="switchLang(lang)" placeholder="{{ 'SelectOne' | translate }}">
+              <ion-select-option value="en" translate>English</ion-select-option>
+              <ion-select-option value="es" translate>Spanish</ion-select-option>
+            </ion-select>
+          </ion-item>
+        
+        <ion-item>
+            <ion-label translate>RecurringPaymentSetting</ion-label>
+            <ion-toggle [(ngModel)]="recurringPayments" (ionChange)="switchRecur()"></ion-toggle>
+        </ion-item>
+      
+        <ion-item>
+            <ion-label translate>SubtractPayments</ion-label>
+            <ion-toggle [(ngModel)]="subPayBal" (ionChange)="switchSub()"></ion-toggle>
+        </ion-item>
+      
+        <ion-item>
+            <ion-label translate>ShowDeleteBt</ion-label>
+            <ion-toggle [(ngModel)]="deleteButton" (ionChange)="switchDel()"></ion-toggle>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label translate>SaveBalHistory</ion-label>
+          <ion-toggle [(ngModel)]="balanceHistory" (ionChange)="switchBalance()"></ion-toggle>
+        </ion-item>
+      
+        <ion-item (click)="clearStorage()">
+            <ion-label translate>ClearSt</ion-label>
+        </ion-item>
+      
+        <ion-item>
+            <ion-label>
+              <span translate>Version</span>
+              <span>1.2.1</span>
+            </ion-label>
+        </ion-item>
+      
+        <!--
+        <ion-item>
+          <ion-label>Notifications</ion-label>
+          <ion-toggle [(ngModel)]="showNotif" (ionChange)="switchNotif()"></ion-toggle>
+        </ion-item>
+        //-->
+      
+      </ion-content>
+</body>

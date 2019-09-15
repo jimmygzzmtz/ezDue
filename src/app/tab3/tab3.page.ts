@@ -25,6 +25,8 @@ export class Tab3Page {
   showNotif: any;
 
   lang: any;
+
+  darkThemeToggle: any;
   
   constructor(private storage: Storage, private _translate: TranslateService, public alertController: AlertController){
     
@@ -35,7 +37,6 @@ export class Tab3Page {
       else{
        this.storage.set('recurringPaymentsBool', false);
       }
-
       
       if(this.recurBool == true){
         this.recurringPayments = true;
@@ -127,12 +128,29 @@ export class Tab3Page {
 
   }
 
+  ngOnInit() {
+    this.darkThemeToggle = document.querySelector('#darkThemeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    prefersDark.addListener((e) => this.checkToggle(e.matches));
+    this.checkToggle(prefersDark.matches)
+    this.switchDarkTheme()
+  }
+
+  checkToggle(shouldCheck) {
+    this.darkThemeToggle.checked = shouldCheck;
+  }
+
+  switchDarkTheme(){
+    document.body.classList.toggle('dark', this.darkThemeToggle.checked)
+  }
+
   ionViewWillEnter(){
     this.storage.get('lang').then((val) => {
       this.lang = val
 
     });
   }
+
 
   switchRecur(){
     if(this.recurringPayments == true){
