@@ -27,6 +27,9 @@
     "InputTask": "Ingrese la Tarea",
     "FillInput": "Por favor llene los campos con datos válidos",
     "FillTask": "Por favor ingrese la tarea",
+    "ClearSt": "Borrar Datos",
+    "ConfirmClear": "Esto borrará de manera permanente todos los datos. ¿Estás seguro?",
+    "Cancel": "Cancelar",
     "Language": "Idioma",
     "English": "Inglés",
     "Spanish": "Español"

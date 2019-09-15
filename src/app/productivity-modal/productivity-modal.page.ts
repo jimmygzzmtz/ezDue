@@ -41,7 +41,6 @@ export class ProductivityModalPage implements OnInit {
 
   ionViewWillEnter(){
     this.language = "" + this._translate.currentLang
-    //this.language = "es"
   }
 
   async save(){
@@ -467,7 +466,6 @@ export class ProductivityModalPage implements OnInit {
 
     if(hour.match(/pm/)){
       hourNum = hourNum + 12;
-      console.log("lol");
     }
 
     let newDate = new Date;

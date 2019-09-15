@@ -27,6 +27,9 @@
     "InputTask": "Input Task",
     "FillInput": "Please fill in all the inputs with correct values",
     "FillTask": "Please input the task",
+    "ClearSt": "Erase Data",
+    "ConfirmClear": "This will permanently erase all your data. Are you sure?",
+    "Cancel": "Cancel",
     "Language": "Language",
     "English": "English",
     "Spanish": "Spanish"

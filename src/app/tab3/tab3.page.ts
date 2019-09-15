@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -25,7 +26,7 @@ export class Tab3Page {
 
   lang: any;
   
-  constructor(private storage: Storage, private _translate: TranslateService){
+  constructor(private storage: Storage, private _translate: TranslateService, public alertController: AlertController){
     
     this.storage.get('recurringPaymentsBool').then((val) => {
       if (val != null){
@@ -195,5 +196,26 @@ export class Tab3Page {
 
   getToggleCond(){
     return this.recurBool;
+  }
+
+  async clearStorage() {
+    const alert = await this.alertController.create({
+      header: this._translate.instant('ClearSt'),
+      message: this._translate.instant('ConfirmClear'),
+      buttons: [
+        {
+            text: this._translate.instant('Cancel')
+        },
+        {
+            text: 'OK',
+            handler: data => {
+              this.storage.clear()
+              location.reload()
+            }
+        }
+    ]
+    });
+
+    await alert.present();
   }
 }
