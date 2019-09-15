@@ -91,6 +91,8 @@ export class FinanceModalPage implements OnInit {
 
   checkEmpty(){
 
+    let cash2 = this.cashAmount.replace(/\,/g,"");
+
     if(this.type == undefined){
       return true;
     }
@@ -99,15 +101,15 @@ export class FinanceModalPage implements OnInit {
       return true;
     }
 
-    if(this.type == "payment" && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "" || isNaN(this.cashAmount) || this.datePicked == undefined)){
+    if(this.type == "payment" && (this.itemName == undefined || this.itemName == "" || cash2 == undefined || cash2 == "" || isNaN(cash2) || this.datePicked == undefined)){
       return true;
     }
 
-    if((this.type == "income" || this.type == "expense") && (this.balHistBool == false) && (this.cashAmount == undefined || this.cashAmount == "" || isNaN(this.cashAmount))){
+    if((this.type == "income" || this.type == "expense") && (this.balHistBool == false) && (cash2 == undefined || cash2 == "" || isNaN(cash2))){
       return true;
     }
 
-    if((this.type == "income" || this.type == "expense") && (this.balHistBool == true) && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "" || isNaN(this.cashAmount))){
+    if((this.type == "income" || this.type == "expense") && (this.balHistBool == true) && (this.itemName == undefined || this.itemName == "" || cash2 == undefined || cash2 == "" || isNaN(cash2))){
       return true;
     }
     
@@ -128,6 +130,7 @@ export class FinanceModalPage implements OnInit {
       await alert.present();
     }
     else{
+      let cash2 = this.cashAmount.replace(/\,/g,"");
       var finLog: any = {};
       if(this.type == "card"){
         finLog = {
@@ -139,7 +142,7 @@ export class FinanceModalPage implements OnInit {
       if(this.type == "payment"){
         finLog = {
             type: this.type,
-            cashAmount: this.cashAmount,
+            cashAmount: cash2,
             datePicked: this.datePicked,
             itemName: this.itemName,
             recurMonths: this.recurMonths
@@ -152,7 +155,7 @@ export class FinanceModalPage implements OnInit {
         if(this.balHistBool == true){
           finLog = {
             type: this.type,
-            cashAmount: this.cashAmount,
+            cashAmount: cash2,
             itemName: this.itemName,
             datePicked: currentDate
           }
@@ -161,7 +164,7 @@ export class FinanceModalPage implements OnInit {
         else{
           finLog = {
             type: this.type,
-            cashAmount: this.cashAmount,
+            cashAmount: cash2,
             datePicked: currentDate
           } 
         } 
