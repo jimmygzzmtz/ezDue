@@ -72,8 +72,8 @@ export class Tab3Page {
       }
       else{
        this.storage.set('deleteBt', true);
+       this.delBool = true;
       }
-
       
       if(this.delBool == false){
         this.deleteButton = false;
