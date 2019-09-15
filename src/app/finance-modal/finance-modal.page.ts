@@ -91,7 +91,11 @@ export class FinanceModalPage implements OnInit {
 
   checkEmpty(){
 
-    let cash2 = this.cashAmount.replace(/\,/g,"");
+    var cash2;
+
+    if(this.cashAmount != undefined){
+      cash2 = this.cashAmount.replace(/\,/g,"");
+    }
 
     if(this.type == undefined){
       return true;
@@ -112,8 +116,6 @@ export class FinanceModalPage implements OnInit {
     if((this.type == "income" || this.type == "expense") && (this.balHistBool == true) && (this.itemName == undefined || this.itemName == "" || cash2 == undefined || cash2 == "" || isNaN(cash2))){
       return true;
     }
-    
-    //checar si cashamount no es numero
 
   }
 
