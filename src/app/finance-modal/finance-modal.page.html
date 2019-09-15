@@ -36,6 +36,10 @@
         <ion-input [(ngModel)]="recurMonths" placeholder="3"></ion-input>
     </ion-item>
 
+    <ion-item href="https://www.xe.com/currencyconverter/" [hidden]="hideCurr">
+        <ion-label translate>CurrencyConvert</ion-label>
+    </ion-item>
+
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end" (click)="save()" slot="fixed">

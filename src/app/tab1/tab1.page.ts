@@ -163,8 +163,6 @@ export class Tab1Page {
 
             this.logs.splice(index, 1);
 
-            console.log("hi " + JSON.stringify(cardCopy))
-
             if(this.balBool == false && cardCopy.type == "payment" && this.subBool == true){
               this.logs.push({
                 type: "expense",

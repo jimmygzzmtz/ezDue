@@ -18,6 +18,7 @@ export class FinanceModalPage implements OnInit {
   hideName: any;
   hideDate: any;
   hideRecur: any = 1;
+  hideCurr: any = 1;
 
   recurBool: boolean;
 
@@ -51,6 +52,7 @@ export class FinanceModalPage implements OnInit {
       this.hideName = 0;
       this.hideDate = 0;
       this.hideRecur = 1;
+      this.hideCurr = 1;
     }
     if(type == 'payment'){
       if(this.recurBool == true){
@@ -62,6 +64,7 @@ export class FinanceModalPage implements OnInit {
       this.hideAmount = 0;
       this.hideName = 0;
       this.hideDate = 0;
+      this.hideCurr = 0;
     }
     if(type == 'income' || type == 'expense'){
       if(this.balHistBool == true){
@@ -71,9 +74,9 @@ export class FinanceModalPage implements OnInit {
         this.hideName = 1;
       }
       this.hideAmount = 0;
-      //this.hideName = 1;
       this.hideDate = 1;
       this.hideRecur = 1;
+      this.hideCurr = 0;
     }
   }
 
@@ -96,17 +99,19 @@ export class FinanceModalPage implements OnInit {
       return true;
     }
 
-    if(this.type == "payment" && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "" || this.datePicked == undefined)){
+    if(this.type == "payment" && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "" || isNaN(this.cashAmount) || this.datePicked == undefined)){
       return true;
     }
 
-    if((this.type == "income" || this.type == "expense") && (this.balHistBool == false) && (this.cashAmount == undefined || this.cashAmount == "")){
+    if((this.type == "income" || this.type == "expense") && (this.balHistBool == false) && (this.cashAmount == undefined || this.cashAmount == "" || isNaN(this.cashAmount))){
       return true;
     }
 
-    if((this.type == "income" || this.type == "expense") && (this.balHistBool == true) && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "")){
+    if((this.type == "income" || this.type == "expense") && (this.balHistBool == true) && (this.itemName == undefined || this.itemName == "" || this.cashAmount == undefined || this.cashAmount == "" || isNaN(this.cashAmount))){
       return true;
     }
+    
+    //checar si cashamount no es numero
 
   }
 

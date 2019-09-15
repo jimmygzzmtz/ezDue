@@ -22,6 +22,8 @@ export class Tab3Page {
 
   notifBool: boolean;
   showNotif: any;
+
+  lang: any;
   
   constructor(private storage: Storage, private _translate: TranslateService){
     
@@ -124,6 +126,13 @@ export class Tab3Page {
 
   }
 
+  ionViewWillEnter(){
+    this.storage.get('lang').then((val) => {
+      this.lang = val
+
+    });
+  }
+
   switchRecur(){
     if(this.recurringPayments == true){
       this.recurBool = true;
@@ -183,8 +192,6 @@ export class Tab3Page {
     this._translate.use(lang);
     this.storage.set('lang', lang);
   }
-
-  
 
   getToggleCond(){
     return this.recurBool;
