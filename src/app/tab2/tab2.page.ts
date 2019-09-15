@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { ProductivityModalPage } from '../productivity-modal/productivity-modal.page';
 import { Storage } from '@ionic/storage';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab2',
@@ -15,7 +16,9 @@ export class Tab2Page {
   delBool: boolean;
   notifBool: boolean;
 
-  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications){
+  public language: string;
+
+  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications, private _translate: TranslateService){
     
     this.storage.get('tasksArr').then((val) => {
       if (val != "[]"){
@@ -61,6 +64,8 @@ export class Tab2Page {
   }
 
   ionViewWillEnter(){
+    this.language = "" + this._translate.currentLang
+
     this.storage.get('deleteBt').then((val) => {
       if (val != undefined){
        this.delBool = !val

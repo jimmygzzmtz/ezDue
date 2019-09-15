@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-balance-modal',
@@ -15,7 +16,9 @@ export class BalanceModalPage implements OnInit {
 
   balance: number = 0;
 
-  constructor(public modalController: ModalController, private storage: Storage) {
+  public language: string;
+
+  constructor(public modalController: ModalController, private storage: Storage, private _translate: TranslateService) {
 
     this.storage.get('logsArr').then((val) => {
       if (val != "[]"){
@@ -45,6 +48,10 @@ export class BalanceModalPage implements OnInit {
     });
 
    }
+
+  ionViewWillEnter(): void {
+    this.language = "" + this._translate.currentLang
+  }
 
   ngOnInit() {
   }

@@ -5,6 +5,7 @@ import { FinanceModalPage } from '../finance-modal/finance-modal.page';
 import { Storage } from '@ionic/storage';
 import { BalanceModalPage } from '../balance-modal/balance-modal.page';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free/ngx';
 
@@ -23,9 +24,10 @@ export class Tab1Page {
   balBool: boolean;
   notifBool: boolean;
 
-  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications, private admobFree: AdMobFree){
+  public language: string;
 
-    
+  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications, private admobFree: AdMobFree, private _translate: TranslateService){
+
     const bannerConfig: AdMobFreeBannerConfig = {
       isTesting: false,
       autoShow: true,
@@ -91,6 +93,8 @@ export class Tab1Page {
   }
 
   ionViewWillEnter(){
+    this.language = "" + this._translate.currentLang
+
     this.storage.get('subPaymentsBool').then((val) => {
       if (val != undefined){
         this.subBool = val
@@ -321,6 +325,7 @@ export class Tab1Page {
               return newTitle2.charAt(0).toUpperCase() + newTitle2.substr(1).toLowerCase();
           });
         }
+        
         
         
         

@@ -31,6 +31,8 @@
     "@ionic/angular": "^4.9.0",
     "@ionic/pwa-elements": "^1.4.1",
     "@ionic/storage": "^2.2.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "cordova-admob-sdk": "0.22.0",
     "cordova-android": "7.1.4",
     "cordova-plugin-admob-free": "0.25.0",

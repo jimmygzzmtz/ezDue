@@ -8,8 +8,10 @@
 
 <ion-card>
     <ion-card-content>
-      <h1>Balance: ${{ this.balance }}</h1>
-
+      <h1>
+          <span translate>Balance</span>
+          <span>: ${{this.balance}}</span>
+      </h1>
       <ion-fab [hidden]="balBool" vertical="center" horizontal="end" slot="fixed">
         <ion-fab-button size="small" (click)="openBalance()">
           <ion-icon name="arrow-dropright"></ion-icon>
@@ -23,7 +25,7 @@
     <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
       <ion-card-content>
         <h2>{{ card.itemName }}</h2>
-        <h3>{{ card.datePicked | date : 'EEEE, MMM d, y'}}</h3>
+        <h3>{{ card.datePicked | date : 'EEEE, MMM d, y' : '' : this.language}}</h3>
         <h3 [hidden]="hideAmount(card)">${{ card.cashAmount }}</h3>
         
         <ion-fab [hidden]="delBool" vertical="top" horizontal="end" slot="fixed">

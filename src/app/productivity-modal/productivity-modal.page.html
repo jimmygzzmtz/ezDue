@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>New Task</ion-title>
+    <ion-title text-center translate>NewTask</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
     <ion-item>
-        <ion-input [(ngModel)]="taskString" placeholder="Input Task"></ion-input>
+        <ion-input [(ngModel)]="taskString" placeholder="{{ 'InputTask' | translate }}"></ion-input>
     </ion-item>
 
 </ion-content>

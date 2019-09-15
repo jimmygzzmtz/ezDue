@@ -7,25 +7,37 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-item>
+      <ion-label translate>Language</ion-label>
+      <ion-select [(ngModel)]="lang" (ionChange)="switchLang(lang)" placeholder="{{ 'SelectOne' | translate }}">
+        <ion-select-option value="en" translate>English</ion-select-option>
+        <ion-select-option value="es" translate>Spanish</ion-select-option>
+      </ion-select>
+    </ion-item>
   
   <ion-item>
-      <ion-label>Input Recurring Payments</ion-label>
+      <ion-label translate>RecurringPaymentSetting</ion-label>
       <ion-toggle [(ngModel)]="recurringPayments" (ionChange)="switchRecur()"></ion-toggle>
   </ion-item>
 
   <ion-item>
-      <ion-label>Subtract Payments from Balance when Done</ion-label>
+      <ion-label translate>SubtractPayments</ion-label>
       <ion-toggle [(ngModel)]="subPayBal" (ionChange)="switchSub()"></ion-toggle>
   </ion-item>
 
   <ion-item>
-      <ion-label>Show Delete Button in Cards</ion-label>
+      <ion-label translate>ShowDeleteBt</ion-label>
       <ion-toggle [(ngModel)]="deleteButton" (ionChange)="switchDel()"></ion-toggle>
   </ion-item>
 
   <ion-item>
-    <ion-label>Save Balance History</ion-label>
+    <ion-label translate>SaveBalHistory</ion-label>
     <ion-toggle [(ngModel)]="balanceHistory" (ionChange)="switchBalance()"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+      <ion-label translate>Version</ion-label>
   </ion-item>
 
   <!--

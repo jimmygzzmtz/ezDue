@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab3',
@@ -22,7 +23,7 @@ export class Tab3Page {
   notifBool: boolean;
   showNotif: any;
   
-  constructor(private storage: Storage){
+  constructor(private storage: Storage, private _translate: TranslateService){
     
     this.storage.get('recurringPaymentsBool').then((val) => {
       if (val != null){
@@ -177,6 +178,13 @@ export class Tab3Page {
 
     this.storage.set('notifBt', this.notifBool);
   }
+
+  switchLang(lang){
+    this._translate.use(lang);
+    this.storage.set('lang', lang);
+  }
+
+  
 
   getToggleCond(){
     return this.recurBool;

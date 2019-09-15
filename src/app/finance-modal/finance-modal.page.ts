@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-finance-modal',
@@ -24,7 +25,7 @@ export class FinanceModalPage implements OnInit {
 
   balHistBool: boolean;
 
-  constructor(public modalController: ModalController, public alertController: AlertController, private storage: Storage ) {
+  constructor(public modalController: ModalController, public alertController: AlertController, private storage: Storage, private _translate: TranslateService ) {
     
     this.storage.get('recurringPaymentsBool').then((val) => {
       if (val != null){
@@ -112,7 +113,7 @@ export class FinanceModalPage implements OnInit {
   async save(){
     if(this.checkEmpty()){
       const alert = await this.alertController.create({
-        header: 'Please fill in all the inputs',
+        header: this._translate.instant('FillInput'),
         buttons: [
           {
               text: 'OK'

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>Balance History</ion-title>
+    <ion-title text-center translate>BalHistory</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,9 +8,11 @@
 
     <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
         <ion-card-content>
-
-          <h2>{{ card.type.toUpperCase() }}: {{ card.itemName }}</h2>
-          <h3>{{ card.datePicked | date : 'EEEE, MMM d, y'}}</h3>
+          <h2>
+              <span translate>{{ card.type.toUpperCase() | translate:card}}</span>
+              <span>: {{ card.itemName }}</span>
+          </h2>
+          <h3>{{ card.datePicked | date : 'EEEE, MMM d, y' : '' : this.language}}</h3>
           <h3>${{ card.cashAmount }}</h3>
           
           <ion-fab [hidden]="delBool" vertical="top" horizontal="end" slot="fixed">

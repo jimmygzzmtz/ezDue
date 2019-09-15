@@ -1,38 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>New Finances Item</ion-title>
+    <ion-title text-center translate>NewFinLog</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
     <ion-item>
-      <ion-label>Type</ion-label>
-      <ion-select [(ngModel)]="type" (ionChange)="onChange(type)" placeholder="Select One">
-        <ion-select-option value="card">Card/ID Expiration</ion-select-option>
-        <ion-select-option value="payment">Payment</ion-select-option>
-        <ion-select-option value="income">Income</ion-select-option>
-        <ion-select-option value="expense">Expense</ion-select-option>
+      <ion-label translate>Type</ion-label>
+      <ion-select [(ngModel)]="type" (ionChange)="onChange(type)" placeholder="{{ 'SelectOne' | translate }}">
+        <ion-select-option value="card" translate>CARD/ID EXPIRATION</ion-select-option>
+        <ion-select-option value="payment" translate>PAYMENT</ion-select-option>
+        <ion-select-option value="income" translate>INCOME</ion-select-option>
+        <ion-select-option value="expense" translate>EXPENSE</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item [hidden]="hideName">
-        <ion-label>Name</ion-label>
-        <ion-input [(ngModel)]="itemName" placeholder="Input Name"></ion-input>
+        <ion-label translate>Name</ion-label>
+        <ion-input [(ngModel)]="itemName"  placeholder="{{ 'InputName' | translate }}"></ion-input>
     </ion-item>
 
     <ion-item [hidden]="hideAmount">
-        <ion-label>Amount</ion-label>
+        <ion-label translate>Amount</ion-label>
         <ion-input [(ngModel)]="cashAmount" placeholder="500"></ion-input>
     </ion-item>
 
     <ion-item [hidden]="hideDate">
-        <ion-label>Date</ion-label>
-        <ion-datetime [(ngModel)]="datePicked" display-format="MMM DD, YYYY" placeholder="Select Date" max="{{ this.getMaxYear() }}"></ion-datetime>
+        <ion-label translate>Date</ion-label>
+        <ion-datetime [(ngModel)]="datePicked" display-format="MMM DD, YYYY" placeholder="{{ 'SelectDate' | translate }}" max="{{ this.getMaxYear() }}"></ion-datetime>
     </ion-item>
 
     <ion-item [hidden]="hideRecur">
-        <ion-label># of Months</ion-label>
+        <ion-label translate>#Months</ion-label>
         <ion-input [(ngModel)]="recurMonths" placeholder="3"></ion-input>
     </ion-item>
 
