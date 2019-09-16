@@ -177,6 +177,7 @@ export class Tab3Page {
     this.storage.get('lang').then((val) => {
       this.lang = val
     });
+    this.selectDarkTheme()
   }
 
 
