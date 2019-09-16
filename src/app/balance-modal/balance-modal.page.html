@@ -1,18 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center translate>BalHistory</ion-title>
+      <ion-title class="ion-text-center" translate>BalHistory</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+    <ion-segment [(ngModel)]="balanceOrder">
+        <ion-segment-button value="chronological">
+          <ion-label translate>Chronological</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="accounting">
+          <ion-label translate>Accounting</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
     <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
         <ion-card-content>
           <div>
-            <ion-button [hidden]="delBool" float-right color="danger" (click)="removeCard(card)">
+            <ion-button [hidden]="delBool" class="ion-float-right" color="danger" (click)="removeCard(card)">
                 <ion-icon name="remove"></ion-icon>
               </ion-button>
-              <ion-button float-right (click)="editCard(card)">
+              <ion-button class="ion-float-right" (click)="editCard(card)">
                 <ion-icon name="create"></ion-icon>
               </ion-button>
               <h2>

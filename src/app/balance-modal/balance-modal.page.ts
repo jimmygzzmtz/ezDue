@@ -17,9 +17,13 @@ export class BalanceModalPage implements OnInit {
 
   balance: number = 0;
 
+  balanceOrder: any;
+
   public language: string;
 
   constructor(public modalController: ModalController, private storage: Storage, private _translate: TranslateService) {
+
+    this.balanceOrder = "chronological"
 
     this.storage.get('logsArr').then((val) => {
       if (val != "[]"){
@@ -56,6 +60,7 @@ export class BalanceModalPage implements OnInit {
 
   ngOnInit() {
   }
+  
 
   dismiss(){
     this.modalController.dismiss();
@@ -63,20 +68,44 @@ export class BalanceModalPage implements OnInit {
 
   getCards() {
     if (this.logs != undefined){
- 
-     var logs2 = this.logs.filter(checkCard, this);
-     logs2.sort((a: any, b: any) => {
-        var aDate = new Date(a.datePicked.valueOf());
-        var bDate = new Date(b.datePicked.valueOf());
-        return aDate.getTime() - bDate.getTime();
-      }); 
-      return logs2;
+      if(this.balanceOrder == "chronological"){
+        var logs2 = this.logs.filter(checkCard, this);
+        logs2.sort((a: any, b: any) => {
+            var aDate = new Date(a.datePicked.valueOf());
+            var bDate = new Date(b.datePicked.valueOf());
+            return aDate.getTime() - bDate.getTime();
+          }); 
+        return logs2;
+      }
+
+      if(this.balanceOrder == "accounting"){
+        var logs2 = this.logs.filter(checkCard, this);
+        var logsInc = logs2.filter(checkIncome, this);
+        var logsExp = logs2.filter(checkExpense, this);
+        logsInc.sort((a: any, b: any) => {
+            var aDate = new Date(a.datePicked.valueOf());
+            var bDate = new Date(b.datePicked.valueOf());
+            return aDate.getTime() - bDate.getTime();
+        }); 
+        logsExp.sort((a: any, b: any) => {
+          var aDate = new Date(a.datePicked.valueOf());
+          var bDate = new Date(b.datePicked.valueOf());
+          return aDate.getTime() - bDate.getTime();
+        });
+        return logsInc.concat(logsExp)
+      }
  
     } 
  
     function checkCard(log) {
      return (log.type == "income" || log.type == "expense");
-     } 
+    }
+    function checkIncome(log) {
+    return (log.type == "income");
+    } 
+    function checkExpense(log) {
+      return (log.type == "expense");
+    } 
    }
 
    removeCard(card) {

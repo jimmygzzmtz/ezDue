@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center translate>NewFinLog</ion-title>
+    <ion-title class="ion-text-center" translate>NewFinLog</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,10 +9,11 @@
     <ion-item>
       <ion-label translate>Type</ion-label>
       <ion-select [(ngModel)]="type" (ionChange)="onChange(type)" placeholder="{{ 'SelectOne' | translate }}" interface="popover">
-        <ion-select-option value="card" translate>CARD/ID EXPIRATION</ion-select-option>
-        <ion-select-option value="payment" translate>PAYMENT</ion-select-option>
         <ion-select-option value="income" translate>INCOME</ion-select-option>
         <ion-select-option value="expense" translate>EXPENSE</ion-select-option>
+        <ion-select-option value="payment" translate>PAYMENT</ion-select-option>
+        <ion-select-option disabled>────────────────────</ion-select-option>
+        <ion-select-option value="card" translate>CARD/ID EXPIRATION</ion-select-option>
       </ion-select>
     </ion-item>
 

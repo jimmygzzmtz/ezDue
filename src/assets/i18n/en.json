@@ -18,6 +18,8 @@
     "Date": "Date",
     "#Months": "# of Months",
     "CurrencyConvert": "Currency Conversion",
+    "Chronological": "Chronological",
+    "Accounting": "Accounting",
     "RecurringPaymentSetting": "Recurring Payments",
     "SubtractPayments": "Subtract Payments when Done",
     "ShowDeleteBt": "Show Delete Button in Cards",
