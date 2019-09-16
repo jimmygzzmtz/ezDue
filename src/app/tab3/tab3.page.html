@@ -8,48 +8,53 @@
       </ion-header>
       
       <ion-content>
-        <ion-item lines="full">
-            <ion-icon slot="start" name="moon"></ion-icon>
-            <ion-label translate>Dark</ion-label>
-            <ion-toggle id="darkThemeToggle" (ionChange)="switchDarkTheme()"></ion-toggle>
-        </ion-item>
+
+      <ion-item lines="full">
+          <ion-icon slot="start" name="moon"></ion-icon>
+          <ion-label translate>Dark</ion-label>
+          <ion-select id="darkOpt" (ionChange)="selectDarkTheme()" interface="popover">
+              <ion-select-option value="system" translate>System</ion-select-option>
+              <ion-select-option value="on" translate>On</ion-select-option>
+              <ion-select-option value="off" translate>Off</ion-select-option>
+          </ion-select>
+      </ion-item>
       
-        <ion-item>
+        <ion-item lines="full">
             <ion-label translate>Language</ion-label>
-            <ion-select [(ngModel)]="lang" (ionChange)="switchLang(lang)" placeholder="{{ 'SelectOne' | translate }}">
+            <ion-select [(ngModel)]="lang" (ionChange)="switchLang(lang)" placeholder="{{ 'SelectOne' | translate }}" interface="popover">
               <ion-select-option value="en" translate>English</ion-select-option>
               <ion-select-option value="es" translate>Spanish</ion-select-option>
             </ion-select>
           </ion-item>
         
-        <ion-item>
+        <ion-item lines="full">
             <ion-label translate>RecurringPaymentSetting</ion-label>
             <ion-toggle [(ngModel)]="recurringPayments" (ionChange)="switchRecur()"></ion-toggle>
         </ion-item>
       
-        <ion-item>
+        <ion-item lines="full">
             <ion-label translate>SubtractPayments</ion-label>
             <ion-toggle [(ngModel)]="subPayBal" (ionChange)="switchSub()"></ion-toggle>
         </ion-item>
       
-        <ion-item>
+        <ion-item lines="full">
             <ion-label translate>ShowDeleteBt</ion-label>
             <ion-toggle [(ngModel)]="deleteButton" (ionChange)="switchDel()"></ion-toggle>
         </ion-item>
       
-        <ion-item>
+        <ion-item lines="full">
           <ion-label translate>SaveBalHistory</ion-label>
           <ion-toggle [(ngModel)]="balanceHistory" (ionChange)="switchBalance()"></ion-toggle>
         </ion-item>
       
-        <ion-item (click)="clearStorage()">
+        <ion-item (click)="clearStorage()" lines="full">
             <ion-label translate>ClearSt</ion-label>
         </ion-item>
       
-        <ion-item>
+        <ion-item lines="full">
             <ion-label>
               <span translate>Version</span>
-              <span>1.2.2</span>
+              <span>1.2.3</span>
             </ion-label>
         </ion-item>
       

@@ -7,7 +7,7 @@
     "INCOME": "INCOME",
     "EXPENSE": "EXPENSE",
     "PAYMENT": "PAYMENT",
-    "CARD/ID EXPIRATION": "CARD/ID EXPIRATION",
+    "CARD/ID EXPIRATION": "EXPIRATION",
     "NewFinLog": "New Finances Log",
     "SelectOne": "Select One",
     "InputName": "Input Name",
@@ -31,6 +31,9 @@
     "ConfirmClear": "This will permanently erase all your data. Are you sure?",
     "Cancel": "Cancel",
     "Dark": "Dark Mode",
+    "System": "System",
+    "On": "On",
+    "Off": "Off",
     "Language": "Language",
     "English": "English",
     "Spanish": "Spanish"

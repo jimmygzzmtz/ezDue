@@ -26,7 +26,7 @@ export class Tab3Page {
 
   lang: any;
 
-  darkThemeToggle: any;
+  darkOpt: any;
   
   constructor(private storage: Storage, private _translate: TranslateService, public alertController: AlertController){
     
@@ -126,28 +126,56 @@ export class Tab3Page {
 
     });
 
+    this.storage.get('darkMode').then((val) => {
+      if (val != null){
+        this.darkOpt.value = val
+      }
+      else{
+       this.storage.set('darkMode', 'system');
+       this.darkOpt.value = 'system'
+      }
+
+    });
+
   }
 
   ngOnInit() {
-    this.darkThemeToggle = document.querySelector('#darkThemeToggle');
+    this.darkOpt = document.querySelector('#darkOpt');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     prefersDark.addListener((e) => this.checkToggle(e.matches));
     this.checkToggle(prefersDark.matches)
-    this.switchDarkTheme()
   }
 
   checkToggle(shouldCheck) {
-    this.darkThemeToggle.checked = shouldCheck;
+    if(this.darkOpt.value == 'system'){
+      if(shouldCheck == true){
+        document.body.classList.add('dark')
+      }
+      if(shouldCheck == false){
+        document.body.classList.remove('dark')
+      }
+    }
+    
   }
 
-  switchDarkTheme(){
-    document.body.classList.toggle('dark', this.darkThemeToggle.checked)
+  selectDarkTheme(){
+    if(this.darkOpt.value == 'system'){
+      document.body.classList.toggle('dark', (window.matchMedia('(prefers-color-scheme: dark)').matches))
+      this.storage.set('darkMode', this.darkOpt.value);
+    }
+    if(this.darkOpt.value == 'on'){
+      document.body.classList.add('dark')
+      this.storage.set('darkMode', this.darkOpt.value);
+    }
+    if(this.darkOpt.value == 'off'){
+      document.body.classList.remove('dark')
+      this.storage.set('darkMode', this.darkOpt.value);
+    }
   }
 
   ionViewWillEnter(){
     this.storage.get('lang').then((val) => {
       this.lang = val
-
     });
   }
 
