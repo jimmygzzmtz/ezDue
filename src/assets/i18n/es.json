@@ -36,5 +36,9 @@
     "Off": "Apagado",
     "Language": "Idioma",
     "English": "Inglés",
-    "Spanish": "Español"
+    "Spanish": "Español",
+    "Install": "Como instalar",
+    "InstallGuideiOS": "En iOS (iPhone, iPad), haga clic en <ion-icon name='share'></ion-icon>, y luego 'Agregar a Inicio'.<br><br>",
+    "InstallGuideAndroid": "En Android, haga clic en <ion-icon name='menu'></ion-icon>, y luego 'Agregar a la pantalla principal'.<br><br>",
+    "InstallGuideDesktop": "En Computadoras de Escritorio (Chrome), haga clic en <ion-icon name='add'></ion-icon> en la barra de direcciones."
 }

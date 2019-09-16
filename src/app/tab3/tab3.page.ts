@@ -265,4 +265,18 @@ export class Tab3Page {
 
     await alert.present();
   }
+
+  async installPrompt(){
+    const alert = await this.alertController.create({
+      header: this._translate.instant('Install'),
+      message: this._translate.instant('InstallGuideiOS') + this._translate.instant('InstallGuideAndroid') + this._translate.instant('InstallGuideDesktop'),
+      buttons: [
+        {
+            text: 'OK'
+        }
+    ]
+    });
+
+    await alert.present();
+  }
 }
