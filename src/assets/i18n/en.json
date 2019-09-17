@@ -40,8 +40,8 @@
     "English": "English",
     "Spanish": "Spanish",
     "Install": "How to Install",
-    "InstallGuideiOS": "On iOS (iPhone, iPad), tap on <ion-icon name='share'></ion-icon>, then 'Add to Homescreen'.<br><br>",
-    "InstallGuideAndroid": "On Android, tap on <ion-icon name='menu'></ion-icon>, then 'Add to Homescreen'.<br><br>",
-    "InstallGuideDesktop": "On Desktop (Chrome), click on <ion-icon name='add'></ion-icon> on the address bar."
+    "InstallGuideiOS": "<ion-icon name='logo-apple'></ion-icon> Tap on <ion-icon name='share'></ion-icon>, then 'Add to Homescreen'.<br><br>",
+    "InstallGuideAndroid": "<ion-icon name='logo-android'></ion-icon> Tap on <ion-icon name='menu'></ion-icon>, then 'Add to Homescreen'.<br><br>",
+    "InstallGuideDesktop": "<ion-icon name='logo-chrome'></ion-icon> Click on <ion-icon name='add'></ion-icon> on the address bar."
 
 }

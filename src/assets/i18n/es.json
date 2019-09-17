@@ -40,7 +40,7 @@
     "English": "Inglés",
     "Spanish": "Español",
     "Install": "Cómo instalar",
-    "InstallGuideiOS": "En iOS (iPhone, iPad), haga clic en <ion-icon name='share'></ion-icon>, y luego 'Agregar a Inicio'.<br><br>",
-    "InstallGuideAndroid": "En Android, haga clic en <ion-icon name='menu'></ion-icon>, y luego 'Agregar a la pantalla principal'.<br><br>",
-    "InstallGuideDesktop": "En Computadoras de Escritorio (Chrome), haga clic en <ion-icon name='add'></ion-icon> en la barra de direcciones."
+    "InstallGuideiOS": "<ion-icon name='logo-apple'></ion-icon> Haga clic en <ion-icon name='share'></ion-icon>, y luego 'Agregar a Inicio'.<br><br>",
+    "InstallGuideAndroid": "<ion-icon name='logo-android'></ion-icon> Haga clic en <ion-icon name='menu'></ion-icon>, y luego 'Agregar a la pantalla principal'.<br><br>",
+    "InstallGuideDesktop": "<ion-icon name='logo-chrome'></ion-icon> Haga clic en <ion-icon name='add'></ion-icon> en la barra de direcciones."
 }
