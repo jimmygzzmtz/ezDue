@@ -13,7 +13,13 @@
         <ion-segment-button value="accounting">
           <ion-label translate>Accounting</ion-label>
         </ion-segment-button>
-      </ion-segment>
+    </ion-segment>
+
+    <style>
+        ion-segment {
+          padding: 5px;
+        }
+    </style>
 
     <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
         <ion-card-content>

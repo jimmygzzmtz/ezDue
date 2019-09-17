@@ -20,12 +20,16 @@ export class ProductivityModalPage implements OnInit {
   hourRegexEN: any = [/(at)?\s*((\d+):(\d+)\s*(am|pm))/ig, /(at)?\s*((\d+):(\d+))/ig,
     /(at)?\s*((\d+)\s*(am|pm))/ig, /at\s*(\d+)/ig];
 
+  minutesRegexEN: any = [/in \d+ minutes|in \d+ hours/ig];
+
   dateRegexES: any = [/(para)?\s*(hoy|mañana|en un dia|en \d+ dias|siguiente semana|en una semana|en \d+ semanas|siguiente mes|en un mes|en \d+ meses|siguiente año|en un año|en \d+ años)/ig, 
     /(para|el)?\s*(siguiente)?\s*(lunes|martes|miercoles|jueves|viernes|sabado|domingo)/ig,
     /(para|en)?\s*(enero \d+|febrero \d+|marzo \d+|abril \d+|mayo \d+|junio \d+|julio \d+|agosto \d+|septiembre \d+|octubre \d+|noviembre \d+|diciembre \d+)/ig];
 
   hourRegexES: any = [/(a la|a las)?\s*((\d+):(\d+)\s*(am|pm))/ig, /(a la|a las)?\s*((\d+):(\d+))/ig,
     /(a la|a las)?\s*((\d+)\s*(am|pm))/ig, /(a la|a las)\s*(\d+)/ig];
+
+  minutesRegexES: any = [/en \d+ minutos|en \d+ horas/ig];
 
   constructor(public modalController: ModalController, public alertController: AlertController, private storage: Storage, private _translate: TranslateService ) {
     
@@ -57,6 +61,7 @@ export class ProductivityModalPage implements OnInit {
       var title = this.taskString;
       var date;
       var hour;
+      var minute;
   
       for (let i = 0; i < this.dateRegexEN.length; i++){
         let result = this.taskString.match(this.dateRegexEN[i]);
@@ -73,10 +78,23 @@ export class ProductivityModalPage implements OnInit {
           hour = result[0];
         }
       }
-  
+
+      for (let i = 0; i < this.minutesRegexEN.length; i++){
+        let result = this.taskString.match(this.minutesRegexEN[i]);
+        title = title.replace(result, '').trim();
+        if (minute == undefined && result != null){
+          minute = result[0];
+        }   
+      }
+
       if(date != undefined){
         date = this.stringToDateEN(date);
       }
+
+      if(minute != undefined && hour == undefined && date == undefined){
+        date = this.stringToMinuteEN(minute);
+      }
+
       if(date == undefined){
         date = new Date;
       }
@@ -118,6 +136,7 @@ export class ProductivityModalPage implements OnInit {
       var title = this.taskString;
       var date;
       var hour;
+      var minute;
   
       for (let i = 0; i < this.dateRegexES.length; i++){
         let result = this.taskString.match(this.dateRegexES[i]);
@@ -134,10 +153,23 @@ export class ProductivityModalPage implements OnInit {
           hour = result[0];
         }
       }
-  
+
+      for (let i = 0; i < this.minutesRegexES.length; i++){
+        let result = this.taskString.match(this.minutesRegexES[i]);
+        title = title.replace(result, '').trim();
+        if (minute == undefined && result != null){
+          minute = result[0];
+        }   
+      }
+
       if(date != undefined){
         date = this.stringToDateES(date);
       }
+
+      if(minute != undefined && hour == undefined && date == undefined){
+        date = this.stringToMinuteES(minute);
+      }
+
       if(date == undefined){
         date = new Date;
       }
@@ -480,6 +512,38 @@ export class ProductivityModalPage implements OnInit {
     date.setHours(hourNum,minNum,0,0);
 
     return date;
+  }
+
+  stringToMinuteEN(minute){
+
+    var newDate2 = new Date;
+    var result = new Date(newDate2.valueOf());
+
+    if(minute.match(/in \d+ minutes/i)){
+      result.setMinutes(newDate2.getMinutes() + +minute.match(/\d+/))
+      return result;
+    }
+
+    if(minute.match(/in \d+ hours/i)){
+      result.setHours(newDate2.getHours() + +minute.match(/\d+/))
+      return result;
+    }
+  }
+
+  stringToMinuteES(minute){
+
+    var newDate2 = new Date;
+    var result = new Date(newDate2.valueOf());
+
+    if(minute.match(/en \d+ minutos/i)){
+      result.setMinutes(newDate2.getMinutes() + +minute.match(/\d+/))
+      return result;
+    }
+
+    if(minute.match(/en \d+ horas/i)){
+      result.setHours(newDate2.getHours() + +minute.match(/\d+/))
+      return result;
+    }
   }
 
 }

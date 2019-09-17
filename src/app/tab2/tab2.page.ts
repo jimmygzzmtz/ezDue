@@ -66,6 +66,10 @@ export class Tab2Page {
   ionViewWillEnter(){
     this.language = "" + this._translate.currentLang
 
+    if(this.language == "undefined"){
+      this.language = this._translate.getBrowserLang()
+    }
+
     this.storage.get('deleteBt').then((val) => {
       if (val != undefined){
        this.delBool = !val

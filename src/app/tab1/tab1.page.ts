@@ -94,6 +94,10 @@ export class Tab1Page {
 
   ionViewWillEnter(){
     this.language = "" + this._translate.currentLang
+    
+    if(this.language == "undefined"){
+      this.language = this._translate.getBrowserLang()
+    }
 
     this.storage.get('subPaymentsBool').then((val) => {
       if (val != undefined){
