@@ -15,12 +15,6 @@
         </ion-segment-button>
     </ion-segment>
 
-    <style>
-        ion-segment {
-          padding: 5px;
-        }
-    </style>
-
     <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
         <ion-card-content>
           <div>

@@ -91,6 +91,11 @@
     color: #f99c11;
   }
 
+  ion-segment {
+    padding: 5px;
+    background-color: white;
+  }
+
   ion-tab-button {
     --color-selected: #f99c11;
   }
@@ -173,6 +178,11 @@ body.dark {
    .tab-selected{
      color: #f99c11;
    }
+
+   ion-segment {
+    padding: 5px;
+    background-color: black;
+  }
  
    ion-tab-button {
      --color-selected: #f99c11;
