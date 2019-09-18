@@ -40,7 +40,21 @@
     "English": "Inglés",
     "Spanish": "Español",
     "Install": "Cómo instalar",
+    "Guide": "Consejos",
     "InstallGuideiOS": "<ion-icon name='logo-apple'></ion-icon> Haga clic en <ion-icon name='share'></ion-icon>, y luego 'Agregar a Inicio'.<br><br>",
     "InstallGuideAndroid": "<ion-icon name='logo-android'></ion-icon> Haga clic en <ion-icon name='menu'></ion-icon>, y luego 'Agregar a la pantalla principal'.<br><br>",
-    "InstallGuideDesktop": "<ion-icon name='logo-chrome'></ion-icon> Haga clic en <ion-icon name='add'></ion-icon> en la barra de direcciones."
+    "InstallGuideDesktop": "<ion-icon name='logo-chrome'></ion-icon> Haga clic en <ion-icon name='add'></ion-icon> en la barra de direcciones.",
+    "FinancesGuide1": "Use esta pestaña para realizar un seguimiento de su saldo, saber dónde están sus gastos más comunes, organizar por ingresos y gastos, y saber cuándo vencen los pagos.",
+    "FinancesGuide2": "Use el botón de suma para agregar un nuevo registro, elija un tipo, monto y fecha (si aplica), y vea cómo ingresa a su historial.",
+    "FinancesGuide3": "Los pagos se mostrarán en tarjetas en orden cronológico, y se pueden editar o eliminar.",
+    "FinancesGuide4": "Se puede ver el Historial de Saldos haciendo clic en el botón a la derecha de la tarjeta de saldo, donde también puede ordenar por orden cronológico o contable.",
+    "FinancesGuide5": "Si se activa en Ajustes, los pagos marcados como realizados (borrados) se restan de su saldo y se registran en su historial.",
+    "FinancesGuide6": "Los pagos recurrentes se pueden activar en los ajustes, lo que permite que los pagos se registren una vez durante varios meses.",
+    "TasksGuide1": "Use esta pestaña para realizar un seguimiento de las tareas que debe realizar a continuación, sin tener que rellenar formularios, ¡reconoce el lenguaje natural!",
+    "TasksGuide2": "Use el botón de suma para agregar una nueva tarea y escriba naturalmente lo que tiene que hacer, como si se lo estuviera diciendo a sí mismo.",
+    "TasksGuide3": "Las tareas se mostrarán en tarjetas en orden cronológico, y se pueden editar o eliminar.",
+    "SettingsGuide1": "Use esta pestaña para activar o desactivar las funciones, cambiar el idioma e, incluso, ¡activar o desactivar el Modo Oscuro!",
+    "SettingsGuide2": "De forma predeterminada, la configuración del Modo oscuro y del Idioma se basa en su dispositivo, pero puede cambiarla manualmente.",
+    "SettingsGuide3": "Los ajustes se almacenan en su dispositivo.",
+    "SettingsGuide4": "Puede elegir borrar sus datos si desea comenzar de nuevo."
 }

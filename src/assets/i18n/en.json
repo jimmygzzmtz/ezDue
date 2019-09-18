@@ -40,8 +40,24 @@
     "English": "English",
     "Spanish": "Spanish",
     "Install": "How to Install",
+    "Guide": "Tips",
     "InstallGuideiOS": "<ion-icon name='logo-apple'></ion-icon> Tap on <ion-icon name='share'></ion-icon>, then 'Add to Homescreen'.<br><br>",
     "InstallGuideAndroid": "<ion-icon name='logo-android'></ion-icon> Tap on <ion-icon name='menu'></ion-icon>, then 'Add to Homescreen'.<br><br>",
-    "InstallGuideDesktop": "<ion-icon name='logo-chrome'></ion-icon> Click on <ion-icon name='add'></ion-icon> on the address bar."
+    "InstallGuideDesktop": "<ion-icon name='logo-chrome'></ion-icon> Click on <ion-icon name='add'></ion-icon> on the address bar.",
+    "FinancesGuide1": "Use this tab to keep track of your balance, know what where your most common expenses, organize by income and expense, and to know when payments are due.",
+    "FinancesGuide2": "Use the plus button to add a new log, choose a type, amount, and date (if applicable), and watch it go into your history.",
+    "FinancesGuide3": "Payments will be shown in cards in chronological order, and they can be edited or deleted.",
+    "FinancesGuide4": "The Balance History can be viewed by clicking on the button on the right of the balance card, where you can also order by chronological or accounting order.",
+    "FinancesGuide5": "If activated in Settings, payments which are marked as done (deleted) are subtracted from your balance and recorded in your history.",
+    "FinancesGuide6": "Recurring payments can be activated in settings, allowing for payments to be logged once for multiple months.",
+    "TasksGuide1": "Use this tab to keep track of what tasks you need to do next, without having to fill in forms, it recognizes natural language!",
+    "TasksGuide2": "Use the plus button to add a new task, and write naturally what you have to do, as if you were telling yourself.",
+    "TasksGuide3": "Tasks will be shown in cards in chronological order, and they can be edited or deleted.",
+    "SettingsGuide1": "Use this tab to turn features on or off, switch language, and even turn on or off Dark Mode!",
+    "SettingsGuide2": "By default, the Dark Mode and Language settings are based on your device, but you can change it manually.",
+    "SettingsGuide3": "Settings are stored in your device.",
+    "SettingsGuide4": "You can choose to erase your data if you want a fresh start."
+    
+
 
 }
