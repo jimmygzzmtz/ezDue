@@ -6,12 +6,13 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
 <ion-card>
     <ion-card-content>
-      <h1>
+      <ion-card-title>
           <span translate>Balance</span>
           <span>: ${{this.balance}}</span>
-      </h1>
+      </ion-card-title>
       <ion-fab [hidden]="balBool" vertical="center" horizontal="end" slot="fixed">
         <ion-fab-button size="small" (click)="openBalance()">
           <ion-icon name="arrow-dropright"></ion-icon>
@@ -20,22 +21,24 @@
     </ion-card-content>
 </ion-card>
 
-<ion-content>
-    <ion-card *ngFor="let card of getCards()" (swiperight)="removeCard(card)">
-      <ion-card-content>
-        <div>
-          <ion-button [hidden]="delBool" class="ion-float-right" color="danger" (click)="removeCard(card)">
-              <ion-icon name="remove"></ion-icon>
-            </ion-button>
-            <ion-button class="ion-float-right" (click)="editCard(card)">
-              <ion-icon name="create"></ion-icon>
-            </ion-button>
-          <h2>{{ card.itemName }}</h2>
-        </div>
-        <h3>{{ card.datePicked | date : 'EEEE, MMM d, y' : '' : this.language}}</h3>
-        <h3 [hidden]="hideAmount(card)">${{ card.cashAmount }}</h3>
-      </ion-card-content>
-    </ion-card>
+<ion-card *ngFor="let card of getCards()">
+    <ion-item>
+      <b>{{ card.itemName }}</b>
+      <ion-button fill="outline" slot="end" (click)="editCard(card)">
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+      <ion-button fill="outline" color="danger" slot="end" (click)="removeCard(card)">
+          <ion-icon name="remove"></ion-icon>
+      </ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      <ion-label>{{ card.datePicked | date : 'EEEE, MMM d, y' : '' : this.language}}</ion-label>
+      <b><br>${{ card.cashAmount }}</b>
+    </ion-card-content>
+  </ion-card>
+
+    
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
