@@ -14,6 +14,7 @@
         <ion-select-option value="payment" translate>PAYMENT</ion-select-option>
         <ion-select-option disabled>────────────────────</ion-select-option>
         <ion-select-option value="card" translate>CARD/ID EXPIRATION</ion-select-option>
+        <ion-select-option value="creditcard" translate>CREDIT CARD</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -30,6 +31,11 @@
     <ion-item [hidden]="hideDate">
         <ion-label translate>Date</ion-label>
         <ion-datetime [(ngModel)]="datePicked" display-format="MMM DD, YYYY" placeholder="{{ 'SelectDate' | translate }}" max="{{ this.getMaxYear() }}"></ion-datetime>
+    </ion-item>
+
+    <ion-item [hidden]="hideDate2">
+        <ion-label translate>Date2</ion-label>
+        <ion-datetime [(ngModel)]="datePicked2" display-format="MMM DD, YYYY" placeholder="{{ 'SelectDate' | translate }}" max="{{ this.getMaxYear() }}"></ion-datetime>
     </ion-item>
 
     <ion-item [hidden]="hideRecur">

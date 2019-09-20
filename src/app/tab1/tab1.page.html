@@ -33,8 +33,11 @@
   </ion-item>
 
   <ion-card-content>
-    <ion-label>{{ card.datePicked | date : 'EEEE, MMM d, y' : '' : this.language}}</ion-label>
-    <b><br>${{ card.cashAmount }}</b>
+    <ion-label translate>Date</ion-label>
+    <ion-label>: {{ card.datePicked | date : 'EEEE, MMM d, y' : '' : this.language}}</ion-label>
+    <ion-label [hidden]="hideDate2(card)" translate><br>Date2</ion-label>
+    <ion-label [hidden]="hideDate2(card)">: {{ card.datePicked2 | date : 'EEEE, MMM d, y' : '' : this.language}}</ion-label>
+    <b [hidden]="hideAmount(card)"><br>${{ card.cashAmount }}</b>
   </ion-card-content>
 </ion-card>
 

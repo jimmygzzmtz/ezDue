@@ -129,7 +129,7 @@ export class Tab1Page {
    } 
 
    function checkCard(log) {
-    return (log.type == "card" || log.type == "payment");
+    return (log.type == "card" || log.type == "payment" || log.type == "creditcard");
     } 
   }
 
@@ -187,6 +187,10 @@ export class Tab1Page {
 
   hideAmount(card){
     return (card.cashAmount == undefined);
+  }
+
+  hideDate2(card){
+    return (card.datePicked2 == undefined);
   }
 
   async logFinance() {
@@ -323,6 +327,22 @@ export class Tab1Page {
               }
               this.storage.set('logsArr', JSON.stringify(this.logs));
             }
+          }
+          if (data.data.type == "creditcard"){
+              if (this.logs == null){
+                this.logs = [];
+                this.logs.push({
+                  type: data.data.type,
+                  cashAmount: data.data.cashAmount,
+                  datePicked: data.data.datePicked,
+                  datePicked2: data.data.datePicked2,
+                  itemName: data.data.itemName
+                })
+              }
+              else{
+                this.logs.push(data.data);
+              }
+              this.storage.set('logsArr', JSON.stringify(this.logs));
           }
         }
         

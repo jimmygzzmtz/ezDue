@@ -12,11 +12,13 @@ export class FinanceModalPage implements OnInit {
   type: any;
   cashAmount: any;
   datePicked: any;
+  datePicked2: any;
   itemName: any;
   
   hideAmount: any;
   hideName: any;
   hideDate: any;
+  hideDate2: any;
   hideRecur: any = 1;
   hideCurr: any = 1;
 
@@ -47,6 +49,7 @@ export class FinanceModalPage implements OnInit {
       this.type = this.editedLog.type
       this.cashAmount = this.editedLog.cashAmount
       this.datePicked = this.editedLog.datePicked
+      this.datePicked2 = this.editedLog.datePicked2
       this.itemName = this.editedLog.itemName
       this.recurMonths = this.editedLog.recurMonths
     }
@@ -60,6 +63,7 @@ export class FinanceModalPage implements OnInit {
       this.hideAmount = 1;
       this.hideName = 0;
       this.hideDate = 0;
+      this.hideDate2 = 1;
       this.hideRecur = 1;
       this.hideCurr = 1;
     }
@@ -73,6 +77,7 @@ export class FinanceModalPage implements OnInit {
       this.hideAmount = 0;
       this.hideName = 0;
       this.hideDate = 0;
+      this.hideDate2 = 1;
       this.hideCurr = 0;
     }
     if(type == 'income' || type == 'expense'){
@@ -84,7 +89,15 @@ export class FinanceModalPage implements OnInit {
       }
       this.hideAmount = 0;
       this.hideDate = 1;
+      this.hideDate2 = 1;
       this.hideRecur = 1;
+      this.hideCurr = 0;
+    }
+    if(type == 'creditcard'){
+      this.hideAmount = 0;
+      this.hideName = 0;
+      this.hideDate = 0;
+      this.hideDate2 = 0;
       this.hideCurr = 0;
     }
   }
@@ -110,11 +123,16 @@ export class FinanceModalPage implements OnInit {
       return true;
     }
 
+
     if(this.type == "card" && (this.itemName == undefined || this.itemName == "" || this.datePicked == undefined)){
       return true;
     }
 
-    if(this.type == "payment" && (this.itemName == undefined || this.itemName == "" || cash2 == undefined || cash2 == "" || isNaN(cash2) || this.datePicked == undefined)){
+    if((this.type == "payment") && (this.itemName == undefined || this.itemName == "" || cash2 == undefined || cash2 == "" || isNaN(cash2) || this.datePicked == undefined)){
+      return true;
+    }
+
+    if((this.type == "creditcard") && (this.itemName == undefined || this.itemName == "" || cash2 == undefined || cash2 == "" || isNaN(cash2) || this.datePicked == undefined || this.datePicked2 == undefined)){
       return true;
     }
 
@@ -146,7 +164,7 @@ export class FinanceModalPage implements OnInit {
         finLog = {
           type: this.type,
           datePicked: this.datePicked,
-          itemName: this.itemName + " Expiration"
+          itemName: this.itemName
         }
       }
       if(this.type == "payment"){
@@ -156,6 +174,15 @@ export class FinanceModalPage implements OnInit {
             datePicked: this.datePicked,
             itemName: this.itemName,
             recurMonths: this.recurMonths
+        }
+      }
+      if(this.type == "creditcard"){
+        finLog = {
+            type: this.type,
+            cashAmount: this.cashAmount.replace(/\,/g,""),
+            datePicked: this.datePicked,
+            datePicked2: this.datePicked2,
+            itemName: this.itemName
         }
       }
       if(this.type == "income" || this.type == "expense"){
