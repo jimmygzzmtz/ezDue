@@ -7,8 +7,6 @@ import { BalanceModalPage } from '../balance-modal/balance-modal.page';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free/ngx';
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -26,25 +24,8 @@ export class Tab1Page {
 
   public language: string;
 
-  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications, private admobFree: AdMobFree, private _translate: TranslateService){
-
-    const bannerConfig: AdMobFreeBannerConfig = {
-      isTesting: false,
-      autoShow: true,
-      id: "ca-app-pub-5122351026058644/2830952715"
-     };
-     this.admobFree.banner.config(bannerConfig);
-     
-     
-     this.admobFree.banner.prepare()
-       .then(() => {
-
-       })
-       .catch(e => console.log(e));
-      
-    
-
-
+  constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage, private localNotifications: LocalNotifications, private _translate: TranslateService){
+  
     this.storage.get('logsArr').then((val) => {
       if (val != "[]"){
        this.logs = JSON.parse(val)

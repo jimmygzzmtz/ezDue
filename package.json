@@ -33,18 +33,6 @@
     "@ionic/storage": "^2.2.0",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
-    "cordova-admob-sdk": "0.22.0",
-    "cordova-android": "7.1.4",
-    "cordova-plugin-admob-free": "0.25.0",
-    "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-device": "^2.0.3",
-    "cordova-plugin-ionic-keyboard": "^2.2.0",
-    "cordova-plugin-ionic-webview": "^3.1.2",
-    "cordova-plugin-local-notification": "0.9.0-beta.2",
-    "cordova-plugin-splashscreen": "^5.0.3",
-    "cordova-plugin-statusbar": "^2.4.3",
-    "cordova-plugin-whitelist": "^1.3.4",
-    "cordova-promise-polyfill": "0.0.2",
     "core-js": "^2.6.9",
     "hammerjs": "^2.0.8",
     "ionic-angular": "^3.9.8",
@@ -79,24 +67,5 @@
     "tslint": "~5.12.0",
     "typescript": "~3.5.3"
   },
-  "description": "An Ionic project",
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
-      "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-local-notification": {},
-      "cordova-plugin-admob-free": {
-        "ADMOB_APP_ID": "ca-app-pub-5122351026058644~8907962828"
-      }
-    },
-    "platforms": [
-      "android"
-    ]
-  }
+  "description": "An easy to use, card-based task and finance manager."
 }
