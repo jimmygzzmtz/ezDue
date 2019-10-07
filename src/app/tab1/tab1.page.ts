@@ -197,7 +197,8 @@ export class Tab1Page {
     const modal = await this.modalController.create({
       component: FinanceModalPage,
       componentProps: { 
-      }
+      },
+      cssClass: "fullscreenModal"
     });
 
     modal.onDidDismiss()
@@ -365,7 +366,8 @@ export class Tab1Page {
     const modal = await this.modalController.create({
       component: BalanceModalPage,
       componentProps: { 
-      }
+      },
+      cssClass: "fullscreenModal"
     });
 
     modal.onDidDismiss()

@@ -126,7 +126,8 @@ export class Tab2Page {
     const modal = await this.modalController.create({
       component: ProductivityModalPage,
       componentProps: { 
-      }
+      },
+      cssClass: "fullscreenModal"
     });
 
     modal.onDidDismiss()
