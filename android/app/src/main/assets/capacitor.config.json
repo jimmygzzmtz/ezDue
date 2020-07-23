@@ -1,7 +1,0 @@
-{
-  "appId": "com.jimmygzzmtz.eZdue",
-  "appName": "eZdue",
-  "bundledWebRuntime": false,
-  "webDir": "www",
-  "npmClient": "npm"
-}
