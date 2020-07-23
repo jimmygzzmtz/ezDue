@@ -32,4 +32,9 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
-.firebase/hosting.d3d3.cache
+
+.firebase/
+.gradle/
+android/
+resources/
+.firebaserc
